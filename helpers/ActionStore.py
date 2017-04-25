@@ -20,13 +20,12 @@ actions_map = {
 	'class': class_actions,
 }
 regex_map = {
-	'prop': r'\w+\s*(static){0,1}\s+\w+\s+(\w+)\s*;',
-	'class': r'\w+\s*(virtual|abstract){0,1}\s+class\s+(\w+)\s*.*{',
+	'prop': r'(public|private|global|protected)\s*(static){0,1}\s+\w+\s+(\w+)\s*;',
+	'class': r'\w+\s*(virtual|abstract|with sharing|without sharing){0,1}\s+class\s+(\w+)\s*.*{',
 }
 
 
 def getActions(line):
-	pass
-	# print()
-	# for x, y in prop_actions.items():
-	# 	pass
+	for key, regex in regex_map.items():
+		if(re.match(regex, line)):
+			return actions_map[key].values()

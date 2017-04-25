@@ -14,9 +14,17 @@ reloader.reload()
 
 # from . import logger
 # log = logger.get(__name__)
+from .helpers import ActionStore as AS
 
 
 class ShowActionsCommand(sublime_plugin.TextCommand):
 	def run(self, edit):
-		for region in self.view.sel():
-			print("region >> ", self.view.substr(self.view.line(region)))
+		region = self.view.sel()[0]
+		line = self.view.substr(self.view.line(region))
+		print('line >>> ', line)
+		items = AS.getActions(line)
+		print('>>> ', items)
+		self.view.window().show_quick_panel(list(items), self.onDone)
+
+	def onDone(self, index):
+		pass
