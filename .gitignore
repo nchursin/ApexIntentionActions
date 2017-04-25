@@ -1,0 +1,11 @@
+__pycache__/
+.DS_Store
+example_*
+*.pyc
+package-metadata.json
+run_tests.sh
+onflight-reload*
+build.sh
+build.xml
+ApexSmartCompletions.sublime-build
+ApexSmartCompletions.sublime-package
