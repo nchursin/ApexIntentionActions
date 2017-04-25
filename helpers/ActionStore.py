@@ -5,16 +5,16 @@ def __init__():
 	pass
 
 
-prop_actions = {
-	'add_getter': 'Add getter',
-	'add_setter': 'Add setter',
-	'add_getter_and_setter': 'Add getter and setter',
-	'add_constr_parameter': 'Add constructor parameter',
-}
-class_actions = {
-	'add_constructor': 'Add constructor',
-	'add_init': 'Add initializer',
-}
+prop_actions = [
+	'Add getter and setter',
+	'Add getter',
+	'Add setter',
+	'Add constructor parameter',
+]
+class_actions = [
+	'Add constructor',
+	'Add initializer',
+]
 actions_map = {
 	'prop': prop_actions,
 	'class': class_actions,
@@ -27,5 +27,5 @@ regex_map = {
 
 def getActions(line):
 	for key, regex in regex_map.items():
-		if(re.match(regex, line)):
-			return actions_map[key].values()
+		if(re.match(regex, line.strip())):
+			return actions_map[key]
