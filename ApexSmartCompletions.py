@@ -58,7 +58,7 @@ class ShowActionsCommand(sublime_plugin.TextCommand):
 
 class RunActionCommand(sublime_plugin.TextCommand):
 	def run(self, edit, action_name, subl_line_start, subl_line_end):
-		action = A.AddSetterAction()
+		action = A.AddGetterSetterAction()
 		action.setView(self.view)
 		action.setCode(sublime.Region(subl_line_start, subl_line_end))
 		action.generate_code(edit)

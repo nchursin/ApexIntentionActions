@@ -116,3 +116,18 @@ class AddSetterAction(PropertyAction):
 		template.addVar('static', False)
 		template.addVar('indent', '\t\t')
 		self.view.insert(edit, self.find_end_of_class().a, template.compile())
+
+
+class AddGetterSetterAction(PropertyAction):
+	def __init__(self):
+		super(AddGetterSetterAction, self).__init__('AddGetterSetter')
+
+	def generate_code(self, edit):
+		getter = AddGetterAction()
+		getter.setView(self.view)
+		getter.setCode(self.code_region)
+		setter = AddSetterAction()
+		setter.setView(self.view)
+		setter.setCode(self.code_region)
+		getter.generate_code(edit)
+		setter.generate_code(edit)

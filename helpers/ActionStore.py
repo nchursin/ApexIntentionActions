@@ -14,7 +14,7 @@ class ActionStore():
 
 
 prop_actions = [
-	ActionStore('Add getter and setter', A.AddGetterAction()),
+	ActionStore('Add getter and setter', A.AddGetterSetterAction()),
 	ActionStore('Add getter', A.AddGetterAction()),
 	ActionStore('Add setter', A.AddSetterAction()),
 	ActionStore('Add constructor parameter', A.AddGetterAction())
