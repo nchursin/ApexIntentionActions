@@ -1,3 +1,13 @@
 [
-	{ "caption": "Apex Smart: Show available actions", "command": "show_actions" }
+	{ 
+		"caption": "Apex Smart: Show available actions", 
+		"command": "show_actions" 
+	},
+	{
+        "caption": "Preferences: Apex Smart – User",
+        "command": "open_file", "args":
+        {
+            "file": "${packages}/User/SmartApexPrefs.sublime-settings"
+        }
+    }
 ]

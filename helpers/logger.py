@@ -1,8 +1,7 @@
-'''
-Logging module for Sublime Text plugins. Tries to emulate normal Python logger.
-by @blopker
-'''
-debug = False
+import sublime
+
+settings = sublime.load_settings('SmartApexPrefs.sublime-settings')
+debug = settings.get("debug")
 
 
 class Logger(object):
