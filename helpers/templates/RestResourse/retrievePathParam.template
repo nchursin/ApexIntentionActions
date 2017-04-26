@@ -1,2 +1,0 @@
-		String {{pathParamName}} = get{{pathParamName}}PathParam();
-		parameters.put('{{pathParamName}}', {{pathParamName}});

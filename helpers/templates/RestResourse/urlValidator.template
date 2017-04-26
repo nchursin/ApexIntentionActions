@@ -1,1 +1,0 @@
-		checkUrlPart(parameters.get('{{var_name}}'), {{set_name}});

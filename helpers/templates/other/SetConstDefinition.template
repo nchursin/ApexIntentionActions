@@ -1,1 +1,0 @@
-{{access}} static final Set<{{objectType}}> {{setName}} = new Set<{{objectType}}>{ {${ ', '.join(setValues) }$} };

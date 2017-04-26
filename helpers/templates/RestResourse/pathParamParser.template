@@ -1,3 +1,0 @@
-	private static String get{{pathParamName}}PathParam(String requestString){
-	    return getUrlPart(requestString, {{pathParamNumber}});
-	}
