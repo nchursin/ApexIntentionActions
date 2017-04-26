@@ -26,8 +26,8 @@ mods_load_order = [
     'FileReader',
     'RegexHelper',
     'TemplateHelper',
-    'ActionStore',
     'Actions',
+    'ActionStore',
 
     'reloader',
 ]
