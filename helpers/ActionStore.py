@@ -1,4 +1,5 @@
-import re
+from . import RegexHelper as re
+from . import Actions as A
 
 
 def __init__():
@@ -21,11 +22,11 @@ actions_map = {
 }
 regex_map = {
 	'prop': r'(public|private|global|protected)\s*(static){0,1}\s+\w+\s+(\w+)\s*;',
-	'class': r'\w+\s*(virtual|abstract|with sharing|without sharing){0,1}\s+class\s+(\w+)\s*.*{',
+	'class': r'(public|private|global|protected)\s*(virtual|abstract|with sharing|without sharing){0,1}\s+class\s+(\w+)\s*.*{',
 }
 
 
 def getActions(line):
 	for key, regex in regex_map.items():
-		if(re.match(regex, line.strip())):
+		if(re.match_stripped(regex, line)):
 			return actions_map[key]

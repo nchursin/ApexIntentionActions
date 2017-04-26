@@ -24,8 +24,10 @@ mods_load_order = [
     'logger',
 
     'FileReader',
+    'RegexHelper',
     'TemplateHelper',
     'ActionStore',
+    'Actions',
 
     'reloader',
 ]
