@@ -5,6 +5,9 @@ import sublime
 
 
 log = logger.get(__name__)
+ADD_GETTER = 'AddGetter'
+ADD_SETTER = 'AddSetter'
+ADD_GETTER_SETTER = 'AddGetterSetter'
 
 
 class Action():
@@ -49,6 +52,26 @@ class Action():
 		log.debug('full_region >> ' + self.view.substr(result))
 		return result
 
+	def find_class_name(self):
+		self.requireView()
+		self.requireCode()
+		class_region = self.get_class_code()
+		class_def = self.view.substr(self.view.line(class_region.a))
+		class_name = re.findClassName(class_def)
+		log.debug('class name >> ' + class_name)
+		return class_name
+
+	def find_end_of_class(self):
+		self.requireView()
+		self.requireCode()
+		class_region = self.get_class_code()
+		class_end_region = self.view.full_line(class_region.b)
+		if not self.end_of_view(class_end_region.b):
+			class_end_region = sublime.Region(class_end_region.a, class_end_region.b - 1)
+		log.debug('class_end_region >> ' + self.view.substr(class_end_region))
+		log.debug('class_end_region >> ' + str(class_end_region.a) + ' : ' + str(class_end_region.b))
+		return sublime.Region(class_end_region.a - 1, class_end_region.a - 1)
+
 	def end_of_view(self, point):
 		return point == self.view.size()
 
@@ -58,25 +81,8 @@ class PropertyAction(Action):
 	def __init__(self, name):
 		super(PropertyAction, self).__init__(name)
 
-	def find_class_name(self):
-		self.requireView()
-		self.requireCode()
-		class_region = self.full_region(self.code_region)
-		class_def = self.view.substr(self.view.line(class_region.a))
-		class_name = re.findClassName(class_def)
-		log.debug('class name >> ' + class_name)
-		return class_name
-
-	def find_end_of_class(self):
-		self.requireView()
-		self.requireCode()
-		class_region = self.full_region(self.code_region)
-		class_end_region = self.view.full_line(class_region.b)
-		if not self.end_of_view(class_end_region.b):
-			class_end_region = sublime.Region(class_end_region.a, class_end_region.b - 1)
-		log.debug('class_end_region >> ' + self.view.substr(class_end_region))
-		log.debug('class_end_region >> ' + str(class_end_region.a) + ' : ' + str(class_end_region.b))
-		return sublime.Region(class_end_region.a - 1, class_end_region.a - 1)
+	def get_class_code(self):
+		return self.full_region(self.code_region)
 
 	def get_prop_name(self):
 		result = re.findPropName(self.view.substr(self.code_region))
@@ -94,7 +100,7 @@ class PropertyAction(Action):
 
 class AddGetterAction(PropertyAction):
 	def __init__(self):
-		super(AddGetterAction, self).__init__('AddGetter')
+		super(AddGetterAction, self).__init__(ADD_GETTER)
 
 	def generate_code(self, edit):
 		template = TH.Template('other/getter')
@@ -107,7 +113,7 @@ class AddGetterAction(PropertyAction):
 
 class AddSetterAction(PropertyAction):
 	def __init__(self):
-		super(AddSetterAction, self).__init__('AddSetter')
+		super(AddSetterAction, self).__init__(ADD_SETTER)
 
 	def generate_code(self, edit):
 		template = TH.Template('other/setter')
@@ -120,7 +126,7 @@ class AddSetterAction(PropertyAction):
 
 class AddGetterSetterAction(PropertyAction):
 	def __init__(self):
-		super(AddGetterSetterAction, self).__init__('AddGetterSetter')
+		super(AddGetterSetterAction, self).__init__(ADD_GETTER_SETTER)
 
 	def generate_code(self, edit):
 		getter = AddGetterAction()

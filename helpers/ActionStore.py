@@ -13,11 +13,16 @@ class ActionStore():
 		self.action = action
 
 
+actions = {
+	A.ADD_GETTER: A.AddGetterAction(),
+	A.ADD_SETTER: A.AddSetterAction(),
+	A.ADD_GETTER_SETTER: A.AddGetterSetterAction(),
+}
 prop_actions = [
-	ActionStore('Add getter and setter', A.AddGetterSetterAction()),
-	ActionStore('Add getter', A.AddGetterAction()),
-	ActionStore('Add setter', A.AddSetterAction()),
-	ActionStore('Add constructor parameter', A.AddGetterAction())
+	ActionStore('Add getter and setter', actions[A.ADD_GETTER_SETTER]),
+	ActionStore('Add getter', actions[A.ADD_GETTER]),
+	ActionStore('Add setter', actions[A.ADD_SETTER]),
+	# ActionStore('Add constructor parameter', A.AddGetterAction())
 ]
 class_actions = [
 	'Add constructor',

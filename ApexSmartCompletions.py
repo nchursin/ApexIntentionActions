@@ -29,7 +29,8 @@ class ShowActionsCommand(sublime_plugin.TextCommand):
 		self.subl_line = self.view.line(region)
 		self.line = self.view.substr(self.subl_line)
 		items = AS.getActions(self.line)
-		names = self.getActionNames(list(items))
+		self.actions = list(items)
+		names = self.getActionNames(self.actions)
 		if items:
 			self.view.window().show_quick_panel(list(names), self.onDone)
 		else:
@@ -43,7 +44,7 @@ class ShowActionsCommand(sublime_plugin.TextCommand):
 		act.get_prop_name()
 		act.get_prop_type()
 		args = {
-			'action_name': 'Test',
+			'action_name': self.actions[index].action.name,
 			'subl_line_start': self.subl_line.a,
 			'subl_line_end': self.subl_line.b
 		}
@@ -58,7 +59,7 @@ class ShowActionsCommand(sublime_plugin.TextCommand):
 
 class RunActionCommand(sublime_plugin.TextCommand):
 	def run(self, edit, action_name, subl_line_start, subl_line_end):
-		action = A.AddGetterSetterAction()
+		action = AS.actions[action_name]
 		action.setView(self.view)
 		action.setCode(sublime.Region(subl_line_start, subl_line_end))
 		action.generate_code(edit)
