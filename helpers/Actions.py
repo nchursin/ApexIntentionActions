@@ -107,7 +107,7 @@ class AddGetterAction(PropertyAction):
 
 class AddSetterAction(PropertyAction):
 	def __init__(self):
-		super(AddGetterAction, self).__init__('AddSetter')
+		super(AddSetterAction, self).__init__('AddSetter')
 
 	def generate_code(self, edit):
 		template = TH.Template('other/setter')
