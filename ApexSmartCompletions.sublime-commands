@@ -4,6 +4,13 @@
 		"command": "show_actions" 
 	},
 	{
+        "caption": "Preferences: Apex Smart – Default",
+        "command": "open_file", "args":
+        {
+            "file": "${packages}/ApexSmartCompletions/SmartApexPrefs.sublime-settings"
+        }
+    },
+	{
         "caption": "Preferences: Apex Smart – User",
         "command": "open_file", "args":
         {

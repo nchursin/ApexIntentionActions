@@ -6,11 +6,18 @@ def __init__():
 	pass
 
 
+class ActionStore():
+	def __init__(self, message, action):
+		super(ActionStore, self).__init__()
+		self.message = message
+		self.action = action
+
+
 prop_actions = [
-	'Add getter and setter',
-	'Add getter',
-	'Add setter',
-	'Add constructor parameter',
+	ActionStore('Add getter and setter', A.AddGetterAction()),
+	ActionStore('Add getter', A.AddGetterAction()),
+	ActionStore('Add setter', A.AddSetterAction()),
+	ActionStore('Add constructor parameter', A.AddGetterAction())
 ]
 class_actions = [
 	'Add constructor',

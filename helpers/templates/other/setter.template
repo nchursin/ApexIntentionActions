@@ -1,0 +1,4 @@
+
+{{indent}}public {${'static' if static else ''}$} {{type}} set{${varName[0].capitalize() + varName[1:]}$}({{type}} value) {
+{{indent}}	{${'' if static else 'this.'}$}{{varName}} = value;
+{{indent}}}
