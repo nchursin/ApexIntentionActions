@@ -22,7 +22,7 @@ Since MavensMate requires ST 3, there will be no ST 2 support.
 
 1. Find a line defining class property. E.g.
 ```public Boolean boolProperty;```
-2. Press ⌘M on Mac or use command `Apex Smart: Show available actions`.
+2. Press `Ctrl+M` (`⌘M` on Mac) or use command `Apex Smart: Show available actions`.
 3. Choose action, press `Enter`
 
 #### Working actions:
