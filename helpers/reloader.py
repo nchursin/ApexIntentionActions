@@ -27,6 +27,8 @@ mods_load_order = [
     'RegexHelper',
     'TemplateHelper',
     'Actions',
+    'PropertyActions',
+    'ClassActions',
     'ActionStore',
 
     'reloader',

@@ -16,7 +16,6 @@ reloader.reload()
 # log = logger.get(__name__)
 from .helpers import logger
 from .helpers import ActionStore as AS
-from .helpers import Actions as A
 
 
 log = logger.get(__name__)
@@ -37,12 +36,8 @@ class ShowActionsCommand(sublime_plugin.TextCommand):
 			log.info('No quick actions found')
 
 	def onDone(self, index):
-		act = A.AddGetterAction()
-		act.setView(self.view)
-		act.setCode(self.subl_line)
-		act.find_class_name()
-		act.get_prop_name()
-		act.get_prop_type()
+		if(-1 == index):
+			return
 		args = {
 			'action_name': self.actions[index].action.name,
 			'subl_line_start': self.subl_line.a,

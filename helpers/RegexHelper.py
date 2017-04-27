@@ -5,6 +5,7 @@ PROP_DEF = r'(public|private|global|protected)\s*(static){0,1}\s+\w+\s+(\w+)\s*;
 SECURE_PROP_DEF = r'(private|protected)\s*(static){0,1}\s+\w+\s+(\w+)\s*;'
 CLASS_NAME = r'(class\s+(\w+)\s+.*{)'
 PROP_NAME = r'((public|private|global|protected)\s*(static){0,1}\s+(\w+)\s+(\w+)\s*;)'
+CONSTRUCTOR = r'((public|private|global|protected)\s+(\w+)\s*\((.|\n)*?\)\s*{)'
 
 
 def match(regex, line):

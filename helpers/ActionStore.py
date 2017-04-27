@@ -1,5 +1,7 @@
 from . import RegexHelper as re
 from . import Actions as A
+from . import PropertyActions as PA
+from . import ClassActions as CA
 
 
 def __init__():
@@ -14,9 +16,12 @@ class ActionStore():
 
 
 actions = {
-	A.ADD_GETTER: A.AddGetterAction(),
-	A.ADD_SETTER: A.AddSetterAction(),
-	A.ADD_GETTER_SETTER: A.AddGetterSetterAction(),
+	A.ADD_GETTER: PA.AddGetterAction(),
+	A.ADD_SETTER: PA.AddSetterAction(),
+	A.ADD_GETTER_SETTER: PA.AddGetterSetterAction(),
+
+	A.ADD_CONSTRUCTOR: CA.AddConstructorAction(),
+	A.ADD_INITIALIZER: CA.AddInitializerAction(),
 }
 prop_actions = [
 	ActionStore('Add getter and setter', actions[A.ADD_GETTER_SETTER]),
@@ -25,8 +30,8 @@ prop_actions = [
 	# ActionStore('Add constructor parameter', A.AddGetterAction())
 ]
 class_actions = [
-	'Add constructor',
-	'Add initializer',
+	ActionStore('Add constructor', actions[A.ADD_CONSTRUCTOR]),
+	ActionStore('Add initializer', actions[A.ADD_INITIALIZER]),
 ]
 actions_map = {
 	'prop': prop_actions,

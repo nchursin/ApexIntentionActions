@@ -30,6 +30,7 @@ Since MavensMate requires ST 3, there will be no ST 2 support.
 1. Add getter
 2. Add setter
 3. Add both getter and setter
+4. Add class constrctor
 
 ## License
 
