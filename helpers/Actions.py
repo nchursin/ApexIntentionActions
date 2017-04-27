@@ -50,7 +50,7 @@ class Action():
 		else:
 			return self.view.full_line(sublime.Region(r.begin() - 1, r.end() + 1))
 
-	def full_region(self, r, im_inside=True):
+	def full_region(self, r):
 		result = self.full_region_from_indent(self.view.indented_region(r.begin()))
 		if not self.end_of_view(result.end()):
 			result = sublime.Region(result.begin(), result.end() - 1)
@@ -78,7 +78,32 @@ class Action():
 		return sublime.Region(class_end_region.begin() - 1, class_end_region.begin() - 1)
 
 	def find_constructors(self):
-		full_region = self.full_region()
+		regions = []
+		full_region = self.get_class_code()
+		start = full_region.begin()
+		constructor_region = self.view.find(re.CONSTRUCTOR, start)
+		limit = 10
+		i = 0
+		while constructor_region:
+			log.debug('constructor_region >> ' + self.view.substr(constructor_region))
+			if full_region.end() > constructor_region.begin():
+				regions.append(constructor_region)
+				start = constructor_region.end()
+				constructor_region = self.view.find(re.CONSTRUCTOR, start)
+			else:
+				break
+			i += 1
+			if limit < i:
+				log.debug('LIMIT REACHED')
+				break
+		return regions
+
+	def get_indent(self):
+		class_region = self.get_class_code()
+		return re.getIndent(self.view.substr(self.view.line(class_region.begin())))
+
+	def get_inner_indent(self):
+		return self.get_indent() + '\t'
 
 	def end_of_view(self, point):
 		return point == self.view.size()

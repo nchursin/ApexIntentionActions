@@ -13,8 +13,8 @@ class ClassAction(A.Action):
 
 	def get_class_code(self):
 		log.debug('get_class_code >> ' + self.view.substr(
-			self.full_region(self.view.indented_region(self.code_region.b + 1))))
-		return self.full_region(self.view.indented_region(self.code_region.b + 1))
+			self.full_region(self.view.indented_region(self.code_region.end() + 1))))
+		return self.full_region(self.view.indented_region(self.code_region.end() + 1))
 
 
 class AddConstructorAction(ClassAction):
@@ -24,18 +24,16 @@ class AddConstructorAction(ClassAction):
 	def generate_code(self, edit):
 		template = TH.Template('other/constructor')
 		template.addVar('className', self.find_class_name())
-		template.addVar('indent', '\t\t')
-		self.view.insert(edit, self.find_end_of_class().a, template.compile())
-		pass
+		template.addVar('indent', self.get_inner_indent())
+		self.view.insert(edit, self.find_end_of_class().begin(), template.compile())
 
 
 class AddInitializerAction(ClassAction):
 	def __init__(self):
-		super(AddConstructorAction, self).__init__(A.ADD_CONSTRUCTOR)
+		super(AddInitializerAction, self).__init__(A.ADD_INITIALIZER)
 
 	def generate_code(self, edit):
+		# constr_regions = self.find_constructors()
 		template = TH.Template('other/initializer')
-		template.addVar('className', self.find_class_name())
-		template.addVar('indent', '\t\t')
-		self.view.insert(edit, self.find_end_of_class().a, template.compile())
-		pass
+		template.addVar('indent', self.get_inner_indent())
+		self.view.insert(edit, self.find_end_of_class().begin(), template.compile())

@@ -1,2 +1,4 @@
 
-{{indent}}public {{className}}() {}
+{{indent}}public {{className}}() {
+{{indent}}	// construct
+{{indent}}}

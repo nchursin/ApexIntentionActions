@@ -38,8 +38,8 @@ class AddGetterAction(PropertyAction):
 		template.addVar('type', self.get_prop_type())
 		template.addVar('varName', self.get_prop_name())
 		template.addVar('static', False)
-		template.addVar('indent', '\t\t')
-		self.view.insert(edit, self.find_end_of_class().a, template.compile())
+		template.addVar('indent', self.get_inner_indent())
+		self.view.insert(edit, self.find_end_of_class().begin(), template.compile())
 
 
 class AddSetterAction(PropertyAction):
@@ -51,8 +51,8 @@ class AddSetterAction(PropertyAction):
 		template.addVar('type', self.get_prop_type())
 		template.addVar('varName', self.get_prop_name())
 		template.addVar('static', False)
-		template.addVar('indent', '\t\t')
-		self.view.insert(edit, self.find_end_of_class().a, template.compile())
+		template.addVar('indent', self.get_inner_indent())
+		self.view.insert(edit, self.find_end_of_class().begin(), template.compile())
 
 
 class AddGetterSetterAction(PropertyAction):
