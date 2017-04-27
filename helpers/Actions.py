@@ -70,31 +70,35 @@ class Action():
 		self.requireView()
 		self.requireCode()
 		class_region = self.get_class_code()
-		class_end_region = self.view.full_line(class_region.end())
-		if not self.end_of_view(class_end_region.end()):
-			class_end_region = sublime.Region(class_end_region.begin(), class_end_region.end() - 1)
-		log.debug('class_end_region >> ' + self.view.substr(class_end_region))
-		log.debug('class_end_region >> ' + str(class_end_region.begin()) + ' : ' + str(class_end_region.end()))
-		return sublime.Region(class_end_region.begin() - 1, class_end_region.begin() - 1)
+		return self.end_of_region(class_region)
+		# class_end_region = self.view.full_line(class_region.end())
+		# if not self.end_of_view(class_end_region.end()):
+		# 	class_end_region = sublime.Region(class_end_region.begin(), class_end_region.end() - 1)
+		# log.debug('class_end_region >> ' + self.view.substr(class_end_region))
+		# log.debug('class_end_region >> ' + str(class_end_region.begin()) + ' : ' + str(class_end_region.end()))
+		# return sublime.Region(class_end_region.begin() - 1, class_end_region.begin() - 1)
+
+	def end_of_region(self, r):
+		end_region = self.view.full_line(r.end())
+		if not self.end_of_view(end_region.end()):
+			end_region = sublime.Region(end_region.begin(), end_region.end() - 1)
+		log.debug('end_region >> ' + self.view.substr(end_region))
+		log.debug('end_region >> ' + str(end_region.begin()) + ' : ' + str(end_region.end()))
+		return sublime.Region(end_region.begin() - 1, end_region.begin() - 1)
 
 	def find_constructors(self):
 		regions = []
 		full_region = self.get_class_code()
 		start = full_region.begin()
 		constructor_region = self.view.find(re.CONSTRUCTOR, start)
-		limit = 10
-		i = 0
 		while constructor_region:
-			log.debug('constructor_region >> ' + self.view.substr(constructor_region))
+			full_constructor = self.full_region(self.view.indented_region(constructor_region.end() + 1))
+			log.debug('constructor_region >> ' + self.view.substr(full_constructor))
 			if full_region.end() > constructor_region.begin():
-				regions.append(constructor_region)
-				start = constructor_region.end()
+				regions.append(full_constructor)
+				start = full_constructor.end()
 				constructor_region = self.view.find(re.CONSTRUCTOR, start)
 			else:
-				break
-			i += 1
-			if limit < i:
-				log.debug('LIMIT REACHED')
 				break
 		return regions
 

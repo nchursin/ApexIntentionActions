@@ -33,7 +33,13 @@ class AddInitializerAction(ClassAction):
 		super(AddInitializerAction, self).__init__(A.ADD_INITIALIZER)
 
 	def generate_code(self, edit):
-		# constr_regions = self.find_constructors()
+		# TODO: optimize constructor search
+		constr_regions = self.find_constructors()
 		template = TH.Template('other/initializer')
 		template.addVar('indent', self.get_inner_indent())
 		self.view.insert(edit, self.find_end_of_class().begin(), template.compile())
+		init_call = '\n' + self.get_inner_indent() + '\tinit();'
+		for i in range(0, len(constr_regions)):
+			constr = constr_regions[i]
+			self.view.insert(edit, self.end_of_region(constr).begin(), init_call)
+			constr_regions = self.find_constructors()
