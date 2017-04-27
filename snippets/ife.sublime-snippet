@@ -1,0 +1,12 @@
+<snippet>
+	<content><![CDATA[
+if(${1:condition}) {
+	${2:// if true}
+} else {
+	${0:// if false}
+}
+]]></content>
+	<tabTrigger>ife</tabTrigger>
+	<scope>source.apex</scope>
+	<description>Simple IF ELSE Condition</description>
+</snippet>

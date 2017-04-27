@@ -1,0 +1,8 @@
+<snippet>
+	<content><![CDATA[
+${1:Object} ${2:variable} = new ${1:Object}(${3});
+]]></content>
+	<tabTrigger>newObj</tabTrigger>
+	<scope>source.apex</scope>
+	<description>Instantiate a new Object</description>
+</snippet>

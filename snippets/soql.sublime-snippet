@@ -1,0 +1,12 @@
+<snippet>
+	<content><![CDATA[
+[
+	SELECT Id, Name, ${5} 
+	FROM ${1:sObject} 
+	WHERE ${2:Id} ${3:=}:${4:sObjId}
+]
+]]></content>
+	<tabTrigger>soql</tabTrigger>
+	<scope>source.apex</scope>
+	<description>SOQL query</description>
+</snippet>

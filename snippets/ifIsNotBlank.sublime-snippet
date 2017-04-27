@@ -1,0 +1,10 @@
+<snippet>
+	<content><![CDATA[
+if(String.isNotBlank(${1:Id})) {
+	${0}
+}
+]]></content>
+	<tabTrigger>ifIsNotBlank</tabTrigger>
+	<scope>source.apex</scope>
+	<description>IF Condition with String isNotBlank</description>
+</snippet>

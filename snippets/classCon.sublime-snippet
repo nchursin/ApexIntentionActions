@@ -1,0 +1,12 @@
+<snippet>
+	<content><![CDATA[
+${1:public} class ${3:ClassName} {
+	${2:public} ${3:ClassName} (${4:Parameters}) {
+		${0}
+	}
+}
+]]></content>
+	<tabTrigger>classcon</tabTrigger>
+	<scope>source.apex</scope>
+	<description>New Class Signature with constructor</description>
+</snippet>

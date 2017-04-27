@@ -1,0 +1,12 @@
+<snippet>
+	<content><![CDATA[
+Map<Id, ${1:SObject}> ${2:sObjectMap} = new Map<Id, ${1:SObject}>([SELECT Id, Name, ${6} 
+														FROM ${1:sObject} 
+														WHERE ${3:Id} ${4:=}:${5:sObjId}
+													]);
+$0
+]]></content>
+	<tabTrigger>soqlMap</tabTrigger>
+	<scope>source.apex</scope>
+	<description>Instantiate a new Map</description>
+</snippet>

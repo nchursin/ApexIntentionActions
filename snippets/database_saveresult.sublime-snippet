@@ -1,0 +1,26 @@
+<snippet>
+	<content><![CDATA[
+Database.SaveResult[] srList = Database.${1:insert/update}(${2:sobjectList}, ${3:false});
+
+// Iterate through each returned result
+for (Database.SaveResult sr : srList) {
+	if (sr.isSuccess()) {
+		// Operation was successful, so get the ID of the record that was processed
+		System.debug('Successful ${1:insert/update} for ${4:object} Id: ' + sr.getId());
+	}
+	else {
+		// Operation failed, display all errors
+		for(Database.Error err : sr.getErrors()) {
+			System.debug(loggingLevel.Error, 'The following error has occurred.');
+			System.debug(loggingLevel.Error, err.getStatusCode() + ': ' + err.getMessage());
+			System.debug(loggingLevel.Error, '${5:object} fields that affected this error: ' + err.getFields());
+		}
+	}
+}
+]]></content>
+	<!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+	<tabTrigger>datasave</tabTrigger>
+	<!-- Optional: Set a scope to limit where the snippet will trigger -->
+	<scope>source.apex</scope>
+	<description>Save Result with iteration</description>
+</snippet>
