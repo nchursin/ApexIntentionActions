@@ -1,0 +1,8 @@
+<snippet>
+	<content><![CDATA[
+${1:Object} ${2:object} = (${1:Object}) JSON.deserialize(${3:json}, ${1:Object}.class);
+]]></content>
+	<tabTrigger>jsonDeserialize</tabTrigger>
+	<scope>source.apex</scope>
+	<description>Deserialize JSON to object</description>
+</snippet>

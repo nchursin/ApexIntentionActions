@@ -4,7 +4,7 @@ for(${1:sObject} ${2:sObj}: ${3:sObjList}) {
 	${0}
 }
 ]]></content>
-	<tabTrigger>fore</tabTrigger>
+	<tabTrigger>foreeach</tabTrigger>
 	<scope>source.apex</scope>
 	<description>Iterator-based FOR loop</description>
 </snippet>

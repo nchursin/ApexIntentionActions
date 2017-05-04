@@ -5,7 +5,7 @@ for(String fieldName : Schema.getGlobalDescribe().get(${2:sObjectName}).getDescr
 	${1:query} += fieldName + ', ';
 }
 ${1:query} = ${1:query}.left(${1:query}.lastIndexOf(','));
-${1:query} += ' FROM ' + ${2:sObjectName} + ' WHERE Id = \'' + ${3:sObjId} + '\'' + ' LIMIT 1000';
+${1:query} += ' FROM ' + ${2:sObjectName} + ' WHERE Id = \'' + ${3:sObjId} + '\'';
 List<${4:sObjectName}> ${5:sObjectList} = (List<${4:sObjectName}>) Database.query(${1:query});
 ]]></content>
 	<tabTrigger>dynSoql</tabTrigger>

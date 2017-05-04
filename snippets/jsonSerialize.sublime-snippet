@@ -1,0 +1,8 @@
+<snippet>
+	<content><![CDATA[
+String ${1:json} = JSON.serialize(${2:object});
+]]></content>
+	<tabTrigger>jsonSerialize</tabTrigger>
+	<scope>source.apex</scope>
+	<description>Serialize object to JSON</description>
+</snippet>

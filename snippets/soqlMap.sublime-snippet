@@ -8,5 +8,5 @@ $0
 ]]></content>
 	<tabTrigger>soqlMap</tabTrigger>
 	<scope>source.apex</scope>
-	<description>Instantiate a new Map</description>
+	<description>New Map from SOQL</description>
 </snippet>

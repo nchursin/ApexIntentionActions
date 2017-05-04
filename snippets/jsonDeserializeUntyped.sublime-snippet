@@ -1,0 +1,8 @@
+<snippet>
+	<content><![CDATA[
+Object ${2:object} = JSON.deserializeUntyped(${3:json});
+]]></content>
+	<tabTrigger>jsonDeserializeUntyped</tabTrigger>
+	<scope>source.apex</scope>
+	<description>Deserialize JSON to object (untyped)</description>
+</snippet>

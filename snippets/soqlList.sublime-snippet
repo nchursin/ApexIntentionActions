@@ -1,0 +1,12 @@
+<snippet>
+	<content><![CDATA[
+List<${1:SObject}> ${2:sObjectList} = [SELECT Id, Name, ${6} 
+											FROM ${1:sObject} 
+											WHERE ${3:Id} ${4:=}:${5:sObjId}
+										];
+$0
+]]></content>
+	<tabTrigger>soqlList</tabTrigger>
+	<scope>source.apex</scope>
+	<description>New List from SOQL</description>
+</snippet>
