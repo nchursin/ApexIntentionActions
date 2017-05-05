@@ -16,7 +16,8 @@ Since MavensMate requires ST 3, there will be no ST 2 support.
 ### Manual
 
 1. Download [a release](https://github.com/nchursin/ApexSmartSnippets/releases "Releases page") to your Sublime Text Packages folder. To find it go to `Preferences -> Browse Packages` (`Sublime Text -> Preferences -> Browse Packages` on Mac).
-2. Restart Sublime if needed.
+2. Remove version number from package folder name.
+3. Restart Sublime if needed.
 
 ## How to use it
 
