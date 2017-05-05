@@ -15,7 +15,7 @@ Since MavensMate requires ST 3, there will be no ST 2 support.
 ## Installation
 ### Manual
 
-1. Clone this repo to your Sublime Packages folder. To find it go to `Preferences -> Browse Packages` (`Sublime Text -> Preferences -> Browse Packages` on Mac).
+1. Download [a release](https://github.com/nchursin/ApexSmartSnippets/releases "Releases page") to your Sublime Text Packages folder. To find it go to `Preferences -> Browse Packages` (`Sublime Text -> Preferences -> Browse Packages` on Mac).
 2. Restart Sublime if needed.
 
 ## How to use it
