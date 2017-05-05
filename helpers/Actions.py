@@ -43,6 +43,9 @@ class Action():
 		if not self.code_region:
 			raise ValueError("No code is set")
 
+	def is_applicable(self):
+		raise Exception("is_applicable not defined")
+
 	def full_region_from_indent(self, r):
 		self.requireView()
 		if self.end_of_view(r.end()):
@@ -101,6 +104,9 @@ class Action():
 			else:
 				break
 		return regions
+
+	def to_text(self, region):
+		return self.view.substr(region)
 
 	def get_indent(self):
 		class_region = self.get_class_code()

@@ -8,6 +8,8 @@ PROP_NAME = r'((public|private|global|protected)\s*(static){0,1}\s+(\w+)\s+(\w+)
 CONSTRUCTOR = r'((public|private|global|protected)\s+(\w+)\s*\((.|\n)*?\)\s*{)'
 INDENT = r'^(\s*)\w'
 
+METHOD_DEF_START = r'(public|global|protected)\s*(static){0,1}\s+(\w+)\s+'
+
 
 def match(regex, line):
 	return re.match(regex, line)
@@ -26,7 +28,7 @@ def find(regex, text):
 	if result:
 		return re.compile(regex).findall(text)[0]
 	else:
-		return []
+		return None
 
 
 def findClassName(code):
@@ -39,6 +41,16 @@ def findPropName(code):
 	result = find(PROP_NAME, code)
 	if result:
 		return result[4]
+
+
+def findGetter(code, prop_name):
+	regex = METHOD_DEF_START + 'get' + prop_name.lower() + r'\s*\(\)\s*\{'
+	return find(regex, code.lower())
+
+
+def findSetter(code, prop_name):
+	regex = METHOD_DEF_START + 'set' + prop_name.lower() + r'\s*\(.*?\)\s*\{'
+	return find(regex, code.lower())
 
 
 def findPropType(code):

@@ -26,11 +26,10 @@ class ShowActionsCommand(sublime_plugin.TextCommand):
 		self.edit = edit
 		region = self.view.sel()[0]
 		self.subl_line = self.view.line(region)
-		self.line = self.view.substr(self.subl_line)
-		items = AS.getActions(self.line)
+		items = AS.getActions(self.view, self.subl_line)
 		self.actions = list(items)
 		names = self.getActionNames(self.actions)
-		if items:
+		if names:
 			self.view.window().show_quick_panel(list(names), self.onDone)
 		else:
 			log.info('No quick actions found')
@@ -44,16 +43,23 @@ class ShowActionsCommand(sublime_plugin.TextCommand):
 			'subl_line_end': self.subl_line.b
 		}
 		self.view.run_command('run_action', args)
+		del self.actions
+		del self.names
 
 	def getActionNames(self, items):
 		names = []
+		real_actions = []
 		for i in items:
-			names.append(i.message)
+			if i.action.is_applicable():
+				names.append(i.message)
+				real_actions.append(i)
+		self.actions = real_actions
 		return names
 
 
 class RunActionCommand(sublime_plugin.TextCommand):
 	def run(self, edit, action_name, subl_line_start, subl_line_end):
+		log.info("Firing action: " + action_name)
 		action = AS.actions[action_name]
 		action.setView(self.view)
 		action.setCode(sublime.Region(subl_line_start, subl_line_end))

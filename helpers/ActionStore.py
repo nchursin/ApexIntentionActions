@@ -43,7 +43,13 @@ regex_map = {
 }
 
 
-def getActions(line):
+def getActions(view, line_reg):
+	result = []
+	line = view.substr(line_reg)
 	for key, regex in regex_map.items():
 		if(re.match_stripped(regex, line)):
-			return actions_map[key]
+			result = actions_map[key]
+	for store in result:
+		store.action.setView(view)
+		store.action.setCode(line_reg)
+	return result
