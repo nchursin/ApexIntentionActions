@@ -22,6 +22,7 @@ actions = {
 
 	A.ADD_CONSTRUCTOR: CA.AddConstructorAction(),
 	A.ADD_INITIALIZER: CA.AddInitializerAction(),
+	A.ADD_CONSTRUCTOR_INITIALIZER: CA.AddConstructorInitializerAction(),
 }
 prop_actions = [
 	ActionStore('Add getter and setter', actions[A.ADD_GETTER_SETTER]),
@@ -32,6 +33,7 @@ prop_actions = [
 class_actions = [
 	ActionStore('Add constructor', actions[A.ADD_CONSTRUCTOR]),
 	ActionStore('Add initializer', actions[A.ADD_INITIALIZER]),
+	ActionStore('Add constructor and initializer', actions[A.ADD_CONSTRUCTOR_INITIALIZER]),
 ]
 actions_map = {
 	'prop': prop_actions,

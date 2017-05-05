@@ -10,6 +10,7 @@ ADD_GETTER_SETTER = 'AddGetterSetter'
 
 ADD_CONSTRUCTOR = 'AddConstructor'
 ADD_INITIALIZER = 'AddInitializer'
+ADD_CONSTRUCTOR_INITIALIZER = 'AddConstructorInitializer'
 
 
 class Action():

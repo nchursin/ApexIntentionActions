@@ -44,7 +44,6 @@ class ShowActionsCommand(sublime_plugin.TextCommand):
 		}
 		self.view.run_command('run_action', args)
 		del self.actions
-		del self.names
 
 	def getActionNames(self, items):
 		names = []
@@ -65,6 +64,8 @@ class RunActionCommand(sublime_plugin.TextCommand):
 		action.setCode(sublime.Region(subl_line_start, subl_line_end))
 		if action.is_applicable():
 			action.generate_code(edit)
+		else:
+			log.info("Action is not applicable.")
 		del action
 
 

@@ -56,3 +56,27 @@ class AddInitializerAction(ClassAction):
 	def is_applicable(self):
 		result = super(AddInitializerAction, self).is_applicable()
 		return result and re.findMethod(self.to_text(self.get_class_code()), self.init_method_name) is None
+
+
+class AddConstructorInitializerAction(ClassAction):
+	def __init__(self):
+		super(AddConstructorInitializerAction, self).__init__(A.ADD_CONSTRUCTOR_INITIALIZER)
+		self.constructor = AddConstructorAction()
+		self.initializer = AddInitializerAction()
+
+	def setView(self, view):
+		super(AddConstructorInitializerAction, self).setView(view)
+		self.initializer.setView(view)
+		self.constructor.setView(view)
+
+	def setCode(self, code_region):
+		super(AddConstructorInitializerAction, self).setCode(code_region)
+		self.initializer.setCode(code_region)
+		self.constructor.setCode(code_region)
+
+	def is_applicable(self):
+		return self.initializer.is_applicable() and self.constructor.is_applicable()
+
+	def generate_code(self, edit):
+		self.constructor.generate_code(edit)
+		self.initializer.generate_code(edit)
