@@ -28,6 +28,10 @@ class PropertyAction(A.Action):
 	def generate_code(self):
 		raise Exception("generate_code not defined")
 
+	def is_applicable(self):
+		prop_regex = r'(public|private|global|protected)\s*(static){0,1}\s+\w+\s+(\w+)\s*;'
+		return re.match_stripped(prop_regex, self.to_text())
+
 
 class AddGetterAction(PropertyAction):
 	def __init__(self):
@@ -42,7 +46,8 @@ class AddGetterAction(PropertyAction):
 		self.view.insert(edit, self.find_end_of_class().begin(), template.compile())
 
 	def is_applicable(self):
-		return re.findGetter(self.to_text(self.get_class_code()), self.get_prop_name()) is None
+		result = super(AddGetterAction, self).is_applicable()
+		return result and re.findGetter(self.to_text(self.get_class_code()), self.get_prop_name()) is None
 
 
 class AddSetterAction(PropertyAction):
@@ -58,7 +63,8 @@ class AddSetterAction(PropertyAction):
 		self.view.insert(edit, self.find_end_of_class().begin(), template.compile())
 
 	def is_applicable(self):
-		return re.findSetter(self.to_text(self.get_class_code()), self.get_prop_name()) is None
+		result = super(AddSetterAction, self).is_applicable()
+		return result and re.findSetter(self.to_text(self.get_class_code()), self.get_prop_name()) is None
 
 
 class AddGetterSetterAction(PropertyAction):

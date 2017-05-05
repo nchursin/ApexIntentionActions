@@ -16,6 +16,10 @@ class ClassAction(A.Action):
 			self.full_region(self.view.indented_region(self.code_region.end() + 1))))
 		return self.full_region(self.view.indented_region(self.code_region.end() + 1))
 
+	def is_applicable(self):
+		class_regex = r'(public|private|global|protected)\s*(virtual|abstract|with sharing|without sharing){0,1}\s+class\s+(\w+)\s*.*{'
+		return re.match_stripped(class_regex, self.to_text())
+
 
 class AddConstructorAction(ClassAction):
 	def __init__(self):
@@ -28,7 +32,8 @@ class AddConstructorAction(ClassAction):
 		self.view.insert(edit, self.find_end_of_class().begin(), template.compile())
 
 	def is_applicable(self):
-		return re.findConstructor(self.to_text(self.get_class_code()), self.find_class_name()) is None
+		result = super(AddConstructorAction, self).is_applicable()
+		return result and re.findConstructor(self.to_text(self.get_class_code()), self.find_class_name()) is None
 
 
 class AddInitializerAction(ClassAction):
@@ -49,4 +54,5 @@ class AddInitializerAction(ClassAction):
 			constr_regions = self.find_constructors()
 
 	def is_applicable(self):
-		return re.findMethod(self.to_text(self.get_class_code()), self.init_method_name) is None
+		result = super(AddInitializerAction, self).is_applicable()
+		return result and re.findMethod(self.to_text(self.get_class_code()), self.init_method_name) is None

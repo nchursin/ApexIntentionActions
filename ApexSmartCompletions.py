@@ -63,5 +63,21 @@ class RunActionCommand(sublime_plugin.TextCommand):
 		action = AS.actions[action_name]
 		action.setView(self.view)
 		action.setCode(sublime.Region(subl_line_start, subl_line_end))
-		action.generate_code(edit)
+		if action.is_applicable():
+			action.generate_code(edit)
+		del action
+
+
+class RunActionCurrentLineCommand(sublime_plugin.TextCommand):
+	def run(self, edit, action_name):
+		log.info("Firing action: " + action_name)
+		region = self.view.sel()[0]
+		self.subl_line = self.view.line(region)
+		action = AS.actions[action_name]
+		action.setView(self.view)
+		action.setCode(self.subl_line)
+		if action.is_applicable():
+			action.generate_code(edit)
+		else:
+			log.info("Action is not applicable.")
 		del action

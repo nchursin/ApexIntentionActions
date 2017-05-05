@@ -105,7 +105,10 @@ class Action():
 				break
 		return regions
 
-	def to_text(self, region):
+	def to_text(self, region=None):
+		if region is None:
+			self.requireCode()
+			region = self.code_region
 		return self.view.substr(region)
 
 	def get_indent(self):
