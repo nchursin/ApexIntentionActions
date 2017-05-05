@@ -1,3 +1,43 @@
 [
-	{ "keys": ["super+m"], "command": "show_actions" },
+	{ "keys": ["alt+space"], "command": "show_actions" },
+	{
+		"keys": ["super+m", "g"], 
+		"command": "run_action_current_line",
+		"args": {"action_name": "AddGetter"}
+	},
+	{
+		"keys": ["super+m", "s"], 
+		"command": "run_action_current_line",
+		"args": {"action_name": "AddSetter"}
+	},
+	{
+		"keys": ["super+m", "super+g"], 
+		"command": "run_action_current_line",
+		"args": {"action_name": "AddGetterSetter"}
+	},
+	{
+		"keys": ["super+m", "super+s"], 
+		"command": "run_action_current_line",
+		"args": {"action_name": "AddGetterSetter"}
+	},
+	{
+		"keys": ["super+m", "c"], 
+		"command": "run_action_current_line",
+		"args": {"action_name": "AddConstructor"}
+	},
+	{
+		"keys": ["super+m", "i"], 
+		"command": "run_action_current_line",
+		"args": {"action_name": "AddInitializer"}
+	},
+	{
+		"keys": ["super+m", "super+c"], 
+		"command": "run_action_current_line",
+		"args": {"action_name": "AddConstructorInitializer"}
+	},
+	{
+		"keys": ["super+m", "super+i"], 
+		"command": "run_action_current_line",
+		"args": {"action_name": "AddConstructorInitializer"}
+	},
 ]
