@@ -114,7 +114,11 @@ class Action():
 
 	def get_indent(self):
 		class_region = self.get_class_code()
-		return re.getIndent(self.view.substr(self.view.line(class_region.begin())))
+		settings = self.view.settings()
+		translate_tabs_to_spaces = settings.get("translate_tabs_to_spaces")
+		tab_size = settings.get("tab_size")
+		return re.getIndent(self.view.substr(self.view.line(class_region.begin())),
+			translate_tabs_to_spaces, tab_size)
 
 	def get_inner_indent(self):
 		return self.get_indent() + '\t'

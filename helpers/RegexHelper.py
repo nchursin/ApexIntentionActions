@@ -1,6 +1,5 @@
 import re
 
-
 CLASS_DEF = r'((public|private|global|protected)\s*(virtual|abstract|with sharing|without sharing){0,1}\s+class\s+(\w+)\s*.*{)'
 PROP_DEF = r'(public|private|global|protected)\s*(static){0,1}\s+\w+\s+(\w+)\s*;'
 SECURE_PROP_DEF = r'(private|protected)\s*(static){0,1}\s+\w+\s+(\w+)\s*;'
@@ -76,9 +75,16 @@ def findPropType(code):
 		return result[3]
 
 
-def getIndent(code):
+def getIndent(code, spaces_to_tabs, tab_size):
 	result = find(INDENT, code)
 	if result:
-		return result[0]
+		if isinstance(result, list):
+			result = result[0]
+		if spaces_to_tabs:
+			tabs_num = len(result) / tab_size
+			result = ''
+			for i in range(0, int(tabs_num)):
+				result += '\t'
+		return result
 	else:
 		return ''
