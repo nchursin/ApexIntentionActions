@@ -49,4 +49,4 @@ All actions have short cut. `Ctrl+M` (`⌘+M` on Mac), then use following shortc
 
 ## License
 
-MIT
+Apache 2.0
