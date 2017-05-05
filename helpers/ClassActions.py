@@ -1,7 +1,7 @@
 from . import logger
 from . import Actions as A
 from . import TemplateHelper as TH
-# from . import RegexHelper as re
+from . import RegexHelper as re
 
 
 log = logger.get(__name__)
@@ -27,10 +27,14 @@ class AddConstructorAction(ClassAction):
 		template.addVar('indent', self.get_inner_indent())
 		self.view.insert(edit, self.find_end_of_class().begin(), template.compile())
 
+	def is_applicable(self):
+		return re.findConstructor(self.to_text(self.get_class_code()), self.find_class_name()) is None
+
 
 class AddInitializerAction(ClassAction):
 	def __init__(self):
 		super(AddInitializerAction, self).__init__(A.ADD_INITIALIZER)
+		self.init_method_name = 'init'
 
 	def generate_code(self, edit):
 		# TODO: optimize constructor search
@@ -38,8 +42,11 @@ class AddInitializerAction(ClassAction):
 		template = TH.Template('other/initializer')
 		template.addVar('indent', self.get_inner_indent())
 		self.view.insert(edit, self.find_end_of_class().begin(), template.compile())
-		init_call = '\n' + self.get_inner_indent() + '\tinit();'
+		init_call = '\n' + self.get_inner_indent() + '\t' + self.init_method_name + '();'
 		for i in range(0, len(constr_regions)):
 			constr = constr_regions[i]
 			self.view.insert(edit, self.end_of_region(constr).begin(), init_call)
 			constr_regions = self.find_constructors()
+
+	def is_applicable(self):
+		return re.findMethod(self.to_text(self.get_class_code()), self.init_method_name) is None
