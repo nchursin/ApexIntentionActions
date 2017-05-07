@@ -21,6 +21,11 @@
 		"args": {"action_name": "AddGetterSetter"}
 	},
 	{
+		"keys": ["ctrl+m", "ctrl+p"], 
+		"command": "run_action_current_line",
+		"args": {"action_name": "AddConstructorParameter"}
+	},
+	{
 		"keys": ["ctrl+m", "c"], 
 		"command": "run_action_current_line",
 		"args": {"action_name": "AddConstructor"}
