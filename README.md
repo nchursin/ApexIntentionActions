@@ -28,7 +28,7 @@ Since MavensMate requires ST 3, there will be no ST 2 support.
 ### Regular snippets
 Just start typing something. If there is a snippet - autocomplete will show it to you. Full list of snippets is yet to come.
 
-#### Working actions:
+#### Working intention actions:
 
 1. Add getter
 2. Add setter
@@ -46,6 +46,10 @@ All actions have short cut. `Ctrl+M` (`⌘+M` on Mac), then use following shortc
 5. `C` - Add class constructor
 6. `I` - Add init method and call in each constructor
 7. `Ctrl+C(⌘+C)` or `Ctrl+I(⌘+I)` - Add 0-arg constructor and init method
+
+## Customizations
+Action menu has two styles: quick panel and pop-up menu.
+To switch between them use preferences command for the plugin and change the `intention_menu_mode` settings. Two options available: `quickpanel` and `popup`.
 
 ## License
 
