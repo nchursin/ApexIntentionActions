@@ -1,10 +1,8 @@
-# Apex Smart Snippets
+# Apex Intention Actions
 #### A Sublime Text 3 plugin to speed up your Salesforce coding.
 
 ## Description
 Snippets and commands to speed up you Salesfroce development
-
-#### ATTENTION! This plugin is currently under development and unstable.
 
 ## Requirements
 1. Sublime Text 3
@@ -21,7 +19,7 @@ Since MavensMate requires ST 3, there will be no ST 2 support.
 
 ## How to use it
 
-### "Smart" snippets exmaple
+### Intention Action
 1. Find a line defining class property. E.g.
 ```public Boolean boolProperty;```
 2. Press `Alt+Space` or use command `Apex Smart: Show available actions`.
