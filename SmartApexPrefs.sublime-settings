@@ -1,3 +1,4 @@
 {
-	"debug": false
+	"debug": false,
+	"intention_menu_mode": "quickpanel"
 }

@@ -12,8 +12,6 @@ if reloader_path in sys.modules:
 from .helpers import reloader
 reloader.reload()
 
-# from . import logger
-# log = logger.get(__name__)
 from .helpers import logger
 from .helpers import ActionStore as AS
 
@@ -23,6 +21,8 @@ log = logger.get(__name__)
 
 class ShowActionsCommand(sublime_plugin.TextCommand):
 	def run(self, edit):
+		self.set_menu()
+
 		self.edit = edit
 		region = self.view.sel()[0]
 		self.subl_line = self.view.line(region)
@@ -30,11 +30,11 @@ class ShowActionsCommand(sublime_plugin.TextCommand):
 		self.actions = list(items)
 		names = self.getActionNames(self.actions)
 		if names:
-			self.view.window().show_quick_panel(list(names), self.onDone)
+			self.show_menu(list(names), self.fire_action)
 		else:
 			log.info('No quick actions found')
 
-	def onDone(self, index):
+	def fire_action(self, index):
 		if(-1 == index):
 			return
 		args = {
@@ -54,6 +54,14 @@ class ShowActionsCommand(sublime_plugin.TextCommand):
 				real_actions.append(i)
 		self.actions = real_actions
 		return names
+
+	def set_menu(self):
+		settings = sublime.load_settings('SmartApexPrefs.sublime-settings')
+		self.intention_menu_mode = settings.get("intention_menu_mode")
+		if "quickpanel" == self.intention_menu_mode.lower():
+			self.show_menu = self.view.window().show_quick_panel
+		elif "popup" == self.intention_menu_mode.lower():
+			self.show_menu = self.view.show_popup_menu
 
 
 class RunActionCommand(sublime_plugin.TextCommand):
