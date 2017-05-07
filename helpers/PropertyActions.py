@@ -124,6 +124,11 @@ class AddConstructorParameterAction(PropertyAction):
 			def_str = def_str.replace(')',
 				arg_def + ')')
 			self.view.replace(edit, def_line, def_str)
+			def_line = self.view.line(start)
+			indent = self.get_inner_indent() + '\t'
+			insert_to = def_line.end() + 1
+			text = '{indent}this.{varname} = {varname};\n'.format(indent=indent, varname=self.get_prop_name())
+			self.view.insert(edit, insert_to, text)
 
 	def is_applicable(self):
 		result = re.is_prop_def(self.to_text(), allow_get_set=True, allow_static=False)
