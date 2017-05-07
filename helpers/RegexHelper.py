@@ -33,7 +33,6 @@ def find_all(regex, text):
 
 
 def find(regex, text):
-	print('>>> find "' + regex + '" in "' + text + '"')
 	result = re.compile(regex).findall(text)
 	if result:
 		return re.compile(regex).findall(text)[0]
@@ -75,7 +74,6 @@ def findConstructorWithParam(code, class_name, param_name, param_type):
 
 def findMethod(code, method_name):
 	regex = METHOD_DEF_START + method_name.lower() + METHOD_DEF_END
-	print("method regex >> " + regex)
 	return find(regex, code.lower())
 
 
