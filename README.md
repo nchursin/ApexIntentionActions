@@ -35,17 +35,19 @@ Just start typing something. If there is a snippet - autocomplete will show it t
 1. Add getter
 2. Add setter
 3. Add both getter and setter
-4. Add class constructor
-5. Add init method and call in each constructor
-6. Add 0-arg constructor and init method
+4. Add constructor parameter
+5. Add class constructor
+6. Add init method and call in each constructor
+7. Add 0-arg constructor and init method
 
 All actions have short cut. `Ctrl+M` (`⌘+M` on Mac), then use following shortcuts:
 1. `G` - Add getter
 2. `S` - Add setter
 3. `Ctrl+G(⌘+G)` or `Ctrl+S(⌘+S)` - Add both getter and setter
-4. `C` - Add class constructor
-5. `I` - Add init method and call in each constructor
-6. `Ctrl+C(⌘+C)` or `Ctrl+I(⌘+I)` - Add 0-arg constructor and init method
+4. `Ctrl+P(⌘+P)` - Add constructor parameter
+5. `C` - Add class constructor
+6. `I` - Add init method and call in each constructor
+7. `Ctrl+C(⌘+C)` or `Ctrl+I(⌘+I)` - Add 0-arg constructor and init method
 
 ## License
 
