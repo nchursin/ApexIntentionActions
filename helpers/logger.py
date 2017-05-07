@@ -28,7 +28,7 @@ class Logger(object):
             return
 
         if len(messages) > 1:
-            message = messages[0] % tuple(messages[1:])
+            message = ' '.join(messages)
         else:
             message = messages[0]
 
