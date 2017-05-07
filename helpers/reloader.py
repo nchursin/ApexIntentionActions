@@ -5,7 +5,7 @@ from . import logger
 log = logger.get(__name__)
 
 # Dependecy reloader stolen from the Emmet plugin
-parent = 'Apex_Intention_Actions.helpers'
+parent = 'Apex Intention Actions.helpers'
 
 reload_mods = []
 
