@@ -25,6 +25,10 @@ Since MavensMate requires ST 3, there will be no ST 2 support.
 2. Press `Alt+Space` or use command `Apex Smart: Show available actions`.
 3. Choose action, press `Enter`
 
+A little demo:
+
+![Getter-setter demo](https://github.com/nchursin/resources/blob/master/ApexIntentionActions/getter-setter.gif?raw=true)
+
 ### Regular snippets
 Just start typing something. If there is a snippet - autocomplete will show it to you. Full list of snippets is yet to come.
 
