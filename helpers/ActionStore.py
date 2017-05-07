@@ -19,6 +19,7 @@ actions = {
 	A.ADD_GETTER: PA.AddGetterAction(),
 	A.ADD_SETTER: PA.AddSetterAction(),
 	A.ADD_GETTER_SETTER: PA.AddGetterSetterAction(),
+	A.ADD_CONSTRUCTOR_PARAMETER: PA.AddConstructorParameterAction(),
 
 	A.ADD_CONSTRUCTOR: CA.AddConstructorAction(),
 	A.ADD_INITIALIZER: CA.AddInitializerAction(),
@@ -28,7 +29,7 @@ prop_actions = [
 	ActionStore('Add getter and setter', actions[A.ADD_GETTER_SETTER]),
 	ActionStore('Add getter', actions[A.ADD_GETTER]),
 	ActionStore('Add setter', actions[A.ADD_SETTER]),
-	# ActionStore('Add constructor parameter', A.AddGetterAction())
+	ActionStore('Add constructor parameter', actions[A.ADD_CONSTRUCTOR_PARAMETER])
 ]
 class_actions = [
 	ActionStore('Add constructor', actions[A.ADD_CONSTRUCTOR]),

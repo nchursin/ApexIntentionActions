@@ -7,6 +7,7 @@ log = logger.get(__name__)
 ADD_GETTER = 'AddGetter'
 ADD_SETTER = 'AddSetter'
 ADD_GETTER_SETTER = 'AddGetterSetter'
+ADD_CONSTRUCTOR_PARAMETER = 'AddConstructorParameter'
 
 ADD_CONSTRUCTOR = 'AddConstructor'
 ADD_INITIALIZER = 'AddInitializer'

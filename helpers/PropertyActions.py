@@ -2,6 +2,7 @@ from . import logger
 from . import TemplateHelper as TH
 from . import RegexHelper as re
 from . import Actions as A
+from . import ClassActions as CA
 
 
 log = logger.get(__name__)
@@ -29,8 +30,7 @@ class PropertyAction(A.Action):
 		raise Exception("generate_code not defined")
 
 	def is_applicable(self):
-		prop_regex = r'(public|private|global|protected)\s*(static){0,1}\s+\w+\s+(\w+)\s*;'
-		return re.match_stripped(prop_regex, self.to_text())
+		return re.is_prop_def(self.to_text())
 
 
 class AddGetterAction(PropertyAction):
@@ -89,3 +89,43 @@ class AddGetterSetterAction(PropertyAction):
 	def generate_code(self, edit):
 		self.getter.generate_code(edit)
 		self.setter.generate_code(edit)
+
+
+class AddConstructorParameterAction(PropertyAction):
+	def __init__(self):
+		super(AddConstructorParameterAction, self).__init__(A.ADD_CONSTRUCTOR_PARAMETER)
+
+	def generate_code(self, edit):
+		constr_regions = self.find_constructors()
+
+		if not constr_regions:
+			constructorAction = CA.AddConstructorAction()
+			constructorAction.setView(self.view)
+			constructorAction.setCode(self.code_region)
+			constructorAction.generate_code(edit)
+			constr_regions = self.find_constructors()
+
+		log.debug('constr_regions size >> ' + str(len(constr_regions)))
+		for constr in constr_regions:
+			start = constr.begin()
+			def_line = self.view.line(start)
+			def_str = self.view.substr(def_line)
+			log.debug('def_str >> ' + def_str)
+			args = re.find(r'\([\s|\n|\w]*?\)\s*\{{0,1}', def_str)
+			log.debug('args >> ' + str(args))
+			arg_def = self.get_prop_type() + ' ' + self.get_prop_name()
+			if re.contains_regex(args, r'\(\s*\w+'):
+				arg_def = ', ' + arg_def
+			def_str = def_str.replace(')',
+				arg_def + ')')
+			self.view.replace(edit, def_line, def_str)
+		# self.view.insert(edit, self.find_end_of_class().begin(), template.compile())
+
+	def is_applicable(self):
+		result = re.is_prop_def(self.to_text(), allow_get_set=True, allow_static=False)
+		result = result and re.findConstructorWithParam(
+			self.to_text(self.get_class_code()),
+			self.find_class_name(),
+			self.get_prop_name(),
+			self.get_prop_type()) is None
+		return result

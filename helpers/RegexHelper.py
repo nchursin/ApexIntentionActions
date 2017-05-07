@@ -1,10 +1,14 @@
 import re
 
-CLASS_DEF = r'((public|private|global|protected)\s*(virtual|abstract|with sharing|without sharing){0,1}\s+class\s+(\w+)\s*.*{)'
 PROP_DEF = r'(public|private|global|protected)\s*(static){0,1}\s+\w+\s+(\w+)\s*;'
+PROP_DEF_GET_SET = r'(public|private|global|protected)\s*(static){0,1}\s+\w+\s+(\w+)\s*\{\s*(get(;|(\{(.|\n)*?\}))\s*set(;|(\{(.|\n)*?\})))\}'
 SECURE_PROP_DEF = r'(private|protected)\s*(static){0,1}\s+\w+\s+(\w+)\s*;'
-CLASS_NAME = r'(class\s+(\w+)\s+.*{)'
+SECURE_PROP_DEF_GET_SET = r'(private|protected)\s*(static){0,1}\s+\w+\s+(\w+)\s*\{\s*(get(;|(\{(.|\n)*?\}))\s*set(;|(\{(.|\n)*?\})))\}'
 PROP_NAME = r'((public|private|global|protected)\s*(static){0,1}\s+(\w+)\s+(\w+)\s*;)'
+
+CLASS_DEF = r'((public|private|global|protected)\s*(virtual|abstract|with sharing|without sharing){0,1}\s+class\s+(\w+)\s*.*{)'
+CLASS_NAME = r'(class\s+(\w+)\s+.*{)'
+
 INDENT = r'^(\s*)\w'
 
 NON_PRIVATE_METHOD_DEF_START = r'((public|global|protected)\s*(static){0,1}\s+(\w+)\s+'
@@ -29,6 +33,7 @@ def find_all(regex, text):
 
 
 def find(regex, text):
+	print('>>> find "' + regex + '" in "' + text + '"')
 	result = re.compile(regex).findall(text)
 	if result:
 		return re.compile(regex).findall(text)[0]
@@ -63,6 +68,11 @@ def findConstructor(code, class_name):
 	return find(regex, code.lower())
 
 
+def findConstructorWithParam(code, class_name, param_name, param_type):
+	regex = CONSTRUCTOR_DEF_START + class_name.lower() + r'\s*\((.|\n)*?' + param_type.lower() + r'\s+' + param_name.lower() + r'(.|\n)*?\)\s*\{)'
+	return find(regex, code.lower())
+
+
 def findMethod(code, method_name):
 	regex = METHOD_DEF_START + method_name.lower() + METHOD_DEF_END
 	print("method regex >> " + regex)
@@ -73,6 +83,25 @@ def findPropType(code):
 	result = find(PROP_NAME, code)
 	if result:
 		return result[3]
+
+
+def is_prop_def(line, allow_get_set=False, allow_static=True):
+	regex = PROP_DEF
+	if not allow_static:
+		regex = regex.replace(r'\s*(static){0,1}', '')
+	result = match_stripped(regex, line)
+	if allow_get_set:
+		regex = PROP_DEF_GET_SET
+		result = result or match_stripped(regex, line)
+	return result
+
+
+def contains_regex(text, regex):
+	reg = re.compile(regex)
+	if reg.search(text):
+		return True
+	else:
+		return False
 
 
 def getIndent(code, spaces_to_tabs, tab_size):
