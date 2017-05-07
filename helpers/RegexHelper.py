@@ -1,4 +1,5 @@
 import re
+from . import logger
 
 PROP_DEF = r'(public|private|global|protected)\s*(static){0,1}\s+\w+\s+(\w+)\s*;'
 PROP_DEF_GET_SET = r'(public|private|global|protected)\s*(static){0,1}\s+\w+\s+(\w+)\s*\{\s*(get(;|(\{(.|\n)*?\}))\s*set(;|(\{(.|\n)*?\})))\}'
@@ -18,6 +19,8 @@ METHOD_DEF_START = r'((public|global|protected|private)\s*(static){0,1}\s+(\w+)\
 
 CONSTRUCTOR_DEF_START = r'((public|private|global|protected)\s+'
 CONSTRUCTOR = CONSTRUCTOR_DEF_START + r'(\w+)' + METHOD_DEF_END
+
+log = logger.get(__name__)
 
 
 def match(regex, line):
@@ -50,6 +53,14 @@ def findPropName(code):
 	result = find(PROP_NAME, code)
 	if result:
 		return result[4]
+
+
+def findPropIsStatic(code):
+	result = find(PROP_NAME, code)
+	log.debug('result >> ', result)
+	log.debug('result[2].lower() >> ', result[2].lower())
+	if result:
+		return result[2].lower() == 'static'
 
 
 def findGetter(code, prop_name):

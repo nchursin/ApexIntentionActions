@@ -26,6 +26,11 @@ class PropertyAction(A.Action):
 		log.debug('property type >> ' + result)
 		return result
 
+	def is_prop_static(self):
+		result = re.findPropIsStatic(self.to_text(self.code_region))
+		log.debug('property static >> ', result)
+		return result
+
 	def generate_code(self):
 		raise Exception("generate_code not defined")
 
@@ -41,7 +46,7 @@ class AddGetterAction(PropertyAction):
 		template = TH.Template('other/getter')
 		template.addVar('type', self.get_prop_type())
 		template.addVar('varName', self.get_prop_name())
-		template.addVar('static', False)
+		template.addVar('static', self.is_prop_static())
 		template.addVar('indent', self.get_inner_indent())
 		self.view.insert(edit, self.find_end_of_class().begin(), template.compile())
 
@@ -58,7 +63,7 @@ class AddSetterAction(PropertyAction):
 		template = TH.Template('other/setter')
 		template.addVar('type', self.get_prop_type())
 		template.addVar('varName', self.get_prop_name())
-		template.addVar('static', False)
+		template.addVar('static', self.is_prop_static())
 		template.addVar('indent', self.get_inner_indent())
 		self.view.insert(edit, self.find_end_of_class().begin(), template.compile())
 
@@ -119,7 +124,6 @@ class AddConstructorParameterAction(PropertyAction):
 			def_str = def_str.replace(')',
 				arg_def + ')')
 			self.view.replace(edit, def_line, def_str)
-		# self.view.insert(edit, self.find_end_of_class().begin(), template.compile())
 
 	def is_applicable(self):
 		result = re.is_prop_def(self.to_text(), allow_get_set=True, allow_static=False)
