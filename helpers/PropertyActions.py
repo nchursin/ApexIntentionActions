@@ -106,7 +106,7 @@ class AddConstructorParameterAction(PropertyAction):
 		if not constr_regions:
 			constructorAction = CA.AddConstructorAction()
 			constructorAction.setView(self.view)
-			constructorAction.setCode(self.code_region)
+			constructorAction.setCode(self.find_class_def())
 			constructorAction.generate_code(edit)
 			constr_regions = self.find_constructors()
 

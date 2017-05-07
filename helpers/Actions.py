@@ -56,17 +56,24 @@ class Action():
 			return self.view.full_line(sublime.Region(r.begin() - 1, r.end() + 1))
 
 	def full_region(self, r):
+		log.debug('self.view.indented_region(r.begin()) >> ', self.to_text(self.view.indented_region(r.begin())))
 		result = self.full_region_from_indent(self.view.indented_region(r.begin()))
 		if not self.end_of_view(result.end()):
 			result = sublime.Region(result.begin(), result.end() - 1)
 		log.debug('full_region >> ' + self.view.substr(result))
 		return result
 
-	def find_class_name(self):
+	def find_class_def(self):
 		self.requireView()
 		self.requireCode()
 		class_region = self.get_class_code()
-		class_def = self.view.substr(self.view.line(class_region.begin()))
+		class_def = self.view.line(class_region.begin())
+		log.debug('class_region.begin() >> ', class_region.begin())
+		log.debug('class_def >> ', class_def)
+		return class_def
+
+	def find_class_name(self):
+		class_def = self.to_text(self.find_class_def())
 		class_name = re.findClassName(class_def)
 		log.debug('class name >> ' + class_name)
 		return class_name
