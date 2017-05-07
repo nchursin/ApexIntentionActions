@@ -7,5 +7,5 @@ run_tests.sh
 onflight-reload*
 build.sh
 build.xml
-ApexSmartCompletions.sublime-build
-ApexSmartCompletions.sublime-package
+Apex Intention Actions.sublime-build
+Apex Intention Actions.sublime-package

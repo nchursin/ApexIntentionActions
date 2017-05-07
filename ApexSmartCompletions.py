@@ -5,7 +5,7 @@ import sublime
 
 
 # Make sure all dependencies are reloaded on upgrade
-reloader_path = 'ApexSmartCompletions.helpers.reloader'
+reloader_path = 'Apex_Intention_Actions.helpers.reloader'
 if reloader_path in sys.modules:
 	imp.reload(sys.modules[reloader_path])
 

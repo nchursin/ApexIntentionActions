@@ -16,5 +16,56 @@
         {
             "file": "${packages}/User/SmartApexPrefs.sublime-settings"
         }
+    },
+
+    {
+        "caption": "Preferences: Apex Intention Actions Key Bindings – Default",
+        "command": "open_file", "args":
+        {
+            "file": "${packages}/Apex Intention Actions/SmartApexPrefs (OSX).sublime-keymap",
+            "platform": "OSX"
+        }
+    },
+    {
+        "caption": "Preferences: Apex Intention Actions Key Bindings – User",
+        "command": "open_file", "args":
+        {
+            "file": "${packages}/User/SmartApexPrefs (OSX).sublime-keymap",
+            "platform": "OSX"
+        }
+    },
+
+    {
+        "caption": "Preferences: Apex Intention Actions Key Bindings – Default",
+        "command": "open_file", "args":
+        {
+            "file": "${packages}/Apex Intention Actions/SmartApexPrefs (Linux).sublime-keymap",
+            "platform": "Linux"
+        }
+    },
+    {
+        "caption": "Preferences: Apex Intention Actions Key Bindings – User",
+        "command": "open_file", "args":
+        {
+            "file": "${packages}/User/SmartApexPrefs (Linux).sublime-keymap",
+            "platform": "Linux"
+        }
+    },
+
+    {
+        "caption": "Preferences: Apex Intention Actions Key Bindings – Default",
+        "command": "open_file", "args":
+        {
+            "file": "${packages}/Apex Intention Actions/SmartApexPrefs (Windows).sublime-keymap",
+            "platform": "Windows"
+        }
+    },
+    {
+        "caption": "Preferences: Apex Intention Actions Key Bindings – User",
+        "command": "open_file", "args":
+        {
+            "file": "${packages}/User/SmartApexPrefs (Windows).sublime-keymap",
+            "platform": "Windows"
+        }
     }
 ]
