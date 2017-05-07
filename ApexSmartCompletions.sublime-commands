@@ -1,17 +1,17 @@
 [
 	{ 
-		"caption": "Apex Smart: Show available actions", 
+		"caption": "Apex Intention Actions: Show available actions", 
 		"command": "show_actions" 
 	},
 	{
-        "caption": "Preferences: Apex Smart – Default",
+        "caption": "Preferences: Apex Intention Actions – Default",
         "command": "open_file", "args":
         {
-            "file": "${packages}/ApexSmartCompletions/SmartApexPrefs.sublime-settings"
+            "file": "${packages}/Apex Intention Actions/SmartApexPrefs.sublime-settings"
         }
     },
 	{
-        "caption": "Preferences: Apex Smart – User",
+        "caption": "Preferences: Apex Intention Actions – User",
         "command": "open_file", "args":
         {
             "file": "${packages}/User/SmartApexPrefs.sublime-settings"
