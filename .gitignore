@@ -7,5 +7,6 @@ run_tests.sh
 onflight-reload*
 build.sh
 build.xml
+wiki/
 Apex Intention Actions.sublime-build
 Apex Intention Actions.sublime-package
