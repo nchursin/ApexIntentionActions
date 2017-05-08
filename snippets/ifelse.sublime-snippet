@@ -6,7 +6,7 @@ if(${1:condition}) {
 	${0:// if false}
 }
 ]]></content>
-	<tabTrigger>ife</tabTrigger>
+	<tabTrigger>ifelse</tabTrigger>
 	<scope>source.apex</scope>
 	<description>Simple IF ELSE Condition</description>
 </snippet>

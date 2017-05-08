@@ -1,6 +1,6 @@
 <snippet>
 	<content><![CDATA[
-String.isNotBlank(${1:Id})
+String.isNotBlank(${1:str})
 ]]></content>
 	<tabTrigger>isNotBlank</tabTrigger>
 	<scope>source.apex</scope>
