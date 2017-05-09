@@ -1,0 +1,3 @@
+{{indent}}{{access}} {${'static' if static else ''}$} {{returnType}} {{methodName}} ({{methodArguments}}){
+{{indent}}	{${'' if 'void' == returnType else 'return '}$}{${'this.' if not static else ''}$}{{methodName}}({{argumentsToPass}});
+{{indent}}}

@@ -12,10 +12,13 @@ CLASS_NAME = r'(class\s+(\w+)\s+.*{)'
 
 INDENT = r'^(\s*)\w'
 
-NON_PRIVATE_METHOD_DEF_START = r'((public|global|protected)\s*(static){0,1}\s+(\w+)\s+'
+NON_PRIVATE_METHOD_DEF_START = r'((public|global|protected)\s*(static){0,1}\s*(override|virtual|abstract){0,1}\s+(\w+)\s+'
 METHOD_DEF_END = r'\s*\((.|\n)*?\)\s*\{)'
+METHOD_DEF_END_ARGS = r'\s*\((\w+\s+\w+(.|\n)*?)\)\s*\{)'
 METHOD_DEF_END_NO_ARG = r'\s*\((\s*)*?\)\s*\{)'
-METHOD_DEF_START = r'((public|global|protected|private)\s*(static){0,1}\s+(\w+)\s+'
+METHOD_DEF_START = r'((public|global|protected|private)\s*(static){0,1}\s*(override|virtual|abstract){0,1}\s+(\w+)\s+'
+METHOD_DEF = METHOD_DEF_START + r'(\w+)' + METHOD_DEF_END
+METHOD_DEF_ARGS = METHOD_DEF_START + r'(\w+)' + METHOD_DEF_END_ARGS
 
 CONSTRUCTOR_DEF_START = r'((public|private|global|protected)\s+'
 CONSTRUCTOR = CONSTRUCTOR_DEF_START + r'(\w+)' + METHOD_DEF_END
@@ -55,10 +58,38 @@ def findPropName(code):
 		return result[4]
 
 
+def findMethodName(code):
+	result = find(METHOD_DEF, code)
+	if result:
+		return result[5]
+
+
+def findMethodAccessLevel(code):
+	result = find(METHOD_DEF, code)
+	if result:
+		return result[1]
+
+
+def findMethodIsStatic(code):
+	result = find(METHOD_DEF, code)
+	if result:
+		return result[2].lower() == 'static'
+
+
+def findMethodReturnType(code):
+	result = find(METHOD_DEF, code)
+	if result:
+		return result[4]
+
+
+def findMethodArgs(code):
+	result = find(METHOD_DEF_ARGS, code)
+	if result:
+		return result[6]
+
+
 def findPropIsStatic(code):
 	result = find(PROP_NAME, code)
-	log.debug('result >> ', result)
-	log.debug('result[2].lower() >> ', result[2].lower())
 	if result:
 		return result[2].lower() == 'static'
 
@@ -92,6 +123,12 @@ def findPropType(code):
 	result = find(PROP_NAME, code)
 	if result:
 		return result[3]
+
+
+def is_method_def(line):
+	regex = METHOD_DEF
+	result = match_stripped(regex, line)
+	return result
 
 
 def is_prop_def(line, allow_get_set=False, allow_static=True):

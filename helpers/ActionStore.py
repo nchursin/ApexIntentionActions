@@ -24,6 +24,8 @@ actions = {
 	A.ADD_CONSTRUCTOR: CA.AddConstructorAction(),
 	A.ADD_INITIALIZER: CA.AddInitializerAction(),
 	A.ADD_CONSTRUCTOR_INITIALIZER: CA.AddConstructorInitializerAction(),
+
+	A.ADD_METHOD_OVERRIDE: CA.AddMethodOverrideAction(),
 }
 prop_actions = [
 	ActionStore('Add getter and setter', actions[A.ADD_GETTER_SETTER]),

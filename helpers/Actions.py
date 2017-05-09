@@ -13,6 +13,8 @@ ADD_CONSTRUCTOR = 'AddConstructor'
 ADD_INITIALIZER = 'AddInitializer'
 ADD_CONSTRUCTOR_INITIALIZER = 'AddConstructorInitializer'
 
+ADD_METHOD_OVERRIDE = 'AddOverride'
+
 
 class Action():
 	"""Stores info on action to take on code"""
