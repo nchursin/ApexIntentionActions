@@ -41,6 +41,7 @@ Just start typing something. If there is a snippet - autocomplete will show it t
 5. Add class constructor
 6. Add init method and call in each constructor
 7. Add 0-arg constructor and init method
+8. Add method overload
 
 All actions have short cut. `Ctrl+M` (`⌘+M` on Mac), then use following shortcuts:
 1. `G` - Add getter
@@ -50,6 +51,7 @@ All actions have short cut. `Ctrl+M` (`⌘+M` on Mac), then use following shortc
 5. `C` - Add class constructor
 6. `I` - Add init method and call in each constructor
 7. `Ctrl+C(⌘+C)` or `Ctrl+I(⌘+I)` - Add 0-arg constructor and init method
+8. `Ctrl+O(⌘+O)` - Add method overload
 
 ## Customizations
 Action menu has two styles: quick panel and pop-up menu.
