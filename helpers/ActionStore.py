@@ -2,6 +2,7 @@ from . import RegexHelper as re
 from . import Actions as A
 from . import PropertyActions as PA
 from . import ClassActions as CA
+from . import MethodActions as MA
 
 
 def __init__():
@@ -25,7 +26,8 @@ actions = {
 	A.ADD_INITIALIZER: CA.AddInitializerAction(),
 	A.ADD_CONSTRUCTOR_INITIALIZER: CA.AddConstructorInitializerAction(),
 
-	A.ADD_METHOD_OVERRIDE: CA.AddMethodOverrideAction(),
+	A.ADD_METHOD_OVERRIDE: MA.AddMethodOverrideChooseArgAction(),
+	A.ADD_METHOD_OVERRIDE_CREATE: MA.AddMethodOverrideAction(),
 }
 prop_actions = [
 	ActionStore('Add getter and setter', actions[A.ADD_GETTER_SETTER]),
@@ -38,13 +40,18 @@ class_actions = [
 	ActionStore('Add initializer', actions[A.ADD_INITIALIZER]),
 	ActionStore('Add constructor and initializer', actions[A.ADD_CONSTRUCTOR_INITIALIZER]),
 ]
+method_actions = [
+	ActionStore('Generate overload', actions[A.ADD_METHOD_OVERRIDE]),
+]
 actions_map = {
 	'prop': prop_actions,
 	'class': class_actions,
+	'method': method_actions,
 }
 regex_map = {
 	'prop': r'(public|private|global|protected)\s*(static){0,1}\s+\w+\s+(\w+)\s*;',
 	'class': r'(public|private|global|protected)\s*(virtual|abstract|with sharing|without sharing){0,1}\s+class\s+(\w+)\s*.*{',
+	'method': re.METHOD_DEF_ARGS,
 }
 
 

@@ -39,8 +39,8 @@ class ShowActionsCommand(sublime_plugin.TextCommand):
 			return
 		args = {
 			'action_name': self.actions[index].action.name,
-			'subl_line_start': self.subl_line.a,
-			'subl_line_end': self.subl_line.b
+			'subl_line_start': self.subl_line.begin(),
+			'subl_line_end': self.subl_line.end()
 		}
 		self.view.run_command('run_action', args)
 		del self.actions
@@ -65,20 +65,20 @@ class ShowActionsCommand(sublime_plugin.TextCommand):
 
 
 class RunActionCommand(sublime_plugin.TextCommand):
-	def run(self, edit, action_name, subl_line_start, subl_line_end):
+	def run(self, edit, action_name, subl_line_start, subl_line_end, **args):
 		log.info("Firing action: " + action_name)
 		action = AS.actions[action_name]
 		action.setView(self.view)
 		action.setCode(sublime.Region(subl_line_start, subl_line_end))
 		if action.is_applicable():
-			action.run(edit)
+			action.run(edit, args)
 		else:
 			log.info("Action is not applicable.")
 		del action
 
 
 class RunActionCurrentLineCommand(sublime_plugin.TextCommand):
-	def run(self, edit, action_name):
+	def run(self, edit, action_name, **args):
 		log.info("Firing action: " + action_name)
 		region = self.view.sel()[0]
 		self.subl_line = self.view.line(region)
@@ -86,7 +86,7 @@ class RunActionCurrentLineCommand(sublime_plugin.TextCommand):
 		action.setView(self.view)
 		action.setCode(self.subl_line)
 		if action.is_applicable():
-			action.run(edit)
+			action.run(edit, args)
 		else:
 			log.info("Action is not applicable.")
 		del action

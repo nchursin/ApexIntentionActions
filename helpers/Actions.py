@@ -14,6 +14,7 @@ ADD_INITIALIZER = 'AddInitializer'
 ADD_CONSTRUCTOR_INITIALIZER = 'AddConstructorInitializer'
 
 ADD_METHOD_OVERRIDE = 'AddOverride'
+ADD_METHOD_OVERRIDE_CREATE = 'CreateOverride'
 
 
 class Action():
@@ -24,7 +25,7 @@ class Action():
 		self.view = None
 		self.code_region = None
 
-	def run(self, edit):
+	def run(self, edit, args):
 		self.generate_code(edit)
 
 	def setView(self, view):
