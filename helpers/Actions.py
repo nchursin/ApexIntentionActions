@@ -22,6 +22,9 @@ class Action():
 		self.view = None
 		self.code_region = None
 
+	def run(self, edit):
+		self.generate_code(edit)
+
 	def setView(self, view):
 		self.view = view
 
