@@ -13,8 +13,8 @@ Since MavensMate requires ST 3, there will be no ST 2 support.
 ## Installation
 ### Manual
 
-1. Download [a release](https://github.com/nchursin/ApexSmartSnippets/releases "Releases page") to your Sublime Text Packages folder. To find it go to `Preferences -> Browse Packages` (`Sublime Text -> Preferences -> Browse Packages` on Mac).
-2. Remove version number from package folder name.
+1. Download [a release](https://github.com/nchursin/ApexIntentionActions/releases "Releases page") to your Sublime Text Packages folder. To find it go to `Preferences -> Browse Packages` (`Sublime Text -> Preferences -> Browse Packages` on Mac).
+2. Change folder name to `Apex Intention Actions: Show available actions`.
 3. Restart Sublime if needed.
 
 ## How to use it
@@ -22,7 +22,7 @@ Since MavensMate requires ST 3, there will be no ST 2 support.
 ### Intention Action
 1. Find a line defining class property. E.g.
 ```public Boolean boolProperty;```
-2. Press `Alt+Space` or use command `Apex Smart: Show available actions`.
+2. Press `Alt+Space` or use command `Apex Intention Actions: Show available actions`.
 3. Choose action, press `Enter`
 
 A little demo:
