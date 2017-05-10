@@ -30,7 +30,7 @@ A little demo:
 ![Getter-setter demo](https://github.com/nchursin/resources/blob/master/ApexIntentionActions/getter-setter.gif?raw=true)
 
 ### Regular snippets
-Just start typing something. If there is a snippet - autocomplete will show it to you. Full list of snippets is yet to come.
+Just start typing something. If there is a snippet - autocomplete will show it to you. Full list of snippets is available [here](https://github.com/nchursin/ApexIntentionActions/wiki/Snippets "Snippets").
 
 #### Working intention actions:
 
