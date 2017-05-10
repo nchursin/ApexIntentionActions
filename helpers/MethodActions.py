@@ -84,7 +84,8 @@ class AddMethodOverrideAction(MethodAction):
 		self.args_def = self.get_arguments()
 		del self.args_def[self.arg_number]
 		self.args_pass = [el.strip().split(' ')[-1] for el in self.get_arguments()]
-		self.arg_to_overload = self.args_pass[self.arg_number]
+		arg_to_overload = self.args_pass[self.arg_number]
+		self.args_pass[self.arg_number] = '${1:' + arg_to_overload + '}'
 		self.generate_code(edit)
 
 	def generate_code(self, edit):
@@ -98,13 +99,10 @@ class AddMethodOverrideAction(MethodAction):
 		template.addVar('methodArguments', ', '.join(self.args_def))
 		template.addVar('argumentsToPass', ', '.join(self.args_pass))
 		code_to_insert = '\n' + template.compile()
-		place_to_insert = self.view.line(self.code_region.begin()).begin() - 1
-		self.view.insert(edit, place_to_insert, code_to_insert)
-		search_start = self.view.line(place_to_insert).end() + 1
-		arg_region = self.view.find('(', search_start)
-		to_overload = self.view.find(self.arg_to_overload, arg_region.begin())
 		self.view.sel().clear()
-		self.view.sel().add(to_overload)
+		place_to_insert = self.view.line(self.code_region.begin()).begin() - 1
+		self.view.sel().add(sublime.Region(place_to_insert, place_to_insert))
+		self.view.run_command("insert_snippet", {"contents": code_to_insert})
 
 	def is_applicable(self):
 		result = super(AddMethodOverrideAction, self).is_applicable()
