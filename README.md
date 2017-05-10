@@ -12,18 +12,9 @@ Since MavensMate requires ST 3, there will be no ST 2 support.
 
 ## Installation
 ### Manual
-There are two ways to install it manually.
 
-1. Download [a release](https://github.com/nchursin/ApexIntentionActions/releases "Releases page").
-2. Unzip it to your Sublime Text Packages folder. To find it go to `Preferences -> Browse Packages` (`Sublime Text -> Preferences -> Browse Packages` on Mac).
-2. Change folder name to `Apex Intention Actions`.
-3. Restart Sublime if needed.
-
-OR
-
-1. Download [a release](https://github.com/nchursin/ApexIntentionActions/releases "Releases page").
-2. Copy the archive to your Sublime Text Packages folder. To find it use `Package Control -> List Packages` on any of the installed package.
-2. Change the archive name to `Apex Intention Actions.sublime-package`.
+1. Download [a release](https://github.com/nchursin/ApexIntentionActions/releases "Releases page"). Rename it to `Apex Intention Actions.sublime-package`
+2. Copy the Sublime package file to your Sublime Text Packages folder. To find it use `Package Control -> List Packages` on any of the installed package.
 3. Restart Sublime if needed.
 
 ## How to use it
