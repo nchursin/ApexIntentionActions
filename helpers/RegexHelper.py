@@ -14,7 +14,7 @@ INDENT = r'^(\s*)\w'
 
 NON_PRIVATE_METHOD_DEF_START = r'((public|global|protected)\s*(static){0,1}\s*(override|virtual|abstract){0,1}\s+(\w+)\s+'
 METHOD_DEF_END = r'\s*\((.|\n)*?\)\s*\{)'
-METHOD_DEF_END_ARGS = r'\s*\((\w+\s+\w+(.|\n)*?)\)\s*\{)'
+METHOD_DEF_END_ARGS = r'\s*\((.+?\s+.+?(.|\n)*?)\)\s*\{)'
 METHOD_DEF_END_NO_ARG = r'\s*\((\s*)*?\)\s*\{)'
 METHOD_DEF_START = r'((public|global|protected|private)\s*(static){0,1}\s*(override|virtual|abstract){0,1}\s+(\w+)\s+'
 METHOD_DEF = METHOD_DEF_START + r'(\w+)' + METHOD_DEF_END
