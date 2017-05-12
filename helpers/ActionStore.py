@@ -3,10 +3,14 @@ from . import Actions as A
 from . import PropertyActions as PA
 from . import ClassActions as CA
 from . import MethodActions as MA
+from . import logger
 
 
 def __init__():
 	pass
+
+
+log = logger.get(__name__)
 
 
 class ActionStore():
@@ -49,14 +53,15 @@ actions_map = {
 	'method': method_actions,
 }
 regex_map = {
-	'prop': r'(public|private|global|protected)\s*(static){0,1}\s+\w+\s+(\w+)\s*;',
-	'class': r'(public|private|global|protected)\s*(virtual|abstract|with sharing|without sharing){0,1}\s+class\s+(\w+)\s*.*{',
+	'prop': re.PROP_DEF,
+	'class': re.CLASS_DEF,
 	'method': re.METHOD_DEF_ARGS,
 }
 
 
 def getActions(view, line_reg):
 	result = []
+	log.info('re.METHOD_DEF_ARGS >> ', re.METHOD_DEF_ARGS)
 	line = view.substr(line_reg)
 	for key, regex in regex_map.items():
 		if(re.match_stripped(regex, line)):

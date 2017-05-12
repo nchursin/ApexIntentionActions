@@ -1,22 +1,30 @@
 import re
 from . import logger
 
-PROP_DEF = r'(public|private|global|protected)\s*(static){0,1}\s+\w+\s+(\w+)\s*;'
+LETTERS = r'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz'
+NUMBERS = r'1234567890'
+SYMBOLS = r'\.,<> '
+LETTERS_NUMBERS = ''.join((LETTERS, NUMBERS))
+ALL_IN_ONE = ''.join((LETTERS_NUMBERS, SYMBOLS))
+
+TYPE = r'([' + ALL_IN_ONE + r']+)'
+
+PROP_DEF = r'(public|private|global|protected)\s*(static){0,1}\s+' + TYPE + r'\s+(\w+)\s*;'
 PROP_DEF_GET_SET = r'(public|private|global|protected)\s*(static){0,1}\s+\w+\s+(\w+)\s*\{\s*(get(;|(\{(.|\n)*?\}))\s*set(;|(\{(.|\n)*?\})))\}'
-SECURE_PROP_DEF = r'(private|protected)\s*(static){0,1}\s+\w+\s+(\w+)\s*;'
-SECURE_PROP_DEF_GET_SET = r'(private|protected)\s*(static){0,1}\s+\w+\s+(\w+)\s*\{\s*(get(;|(\{(.|\n)*?\}))\s*set(;|(\{(.|\n)*?\})))\}'
-PROP_NAME = r'((public|private|global|protected)\s*(static){0,1}\s+(\w+)\s+(\w+)\s*;)'
+SECURE_PROP_DEF = r'(private|protected)\s*(static){0,1}\s+' + TYPE + r'\s+(\w+)\s*;'
+SECURE_PROP_DEF_GET_SET = r'(private|protected)\s*(static){0,1}\s+' + TYPE + r'\s+(\w+)\s*\{\s*(get(;|(\{(.|\n)*?\}))\s*set(;|(\{(.|\n)*?\})))\}'
+PROP_NAME = r'((public|private|global|protected)\s*(static){0,1}\s+' + TYPE + r'\s+(\w+)\s*;)'
 
 CLASS_DEF = r'((public|private|global|protected)\s*(virtual|abstract|with sharing|without sharing){0,1}\s+class\s+(\w+)\s*.*{)'
 CLASS_NAME = r'(class\s+(\w+)\s+.*{)'
 
 INDENT = r'^(\s*)\w'
 
-NON_PRIVATE_METHOD_DEF_START = r'((public|global|protected)\s*(static){0,1}\s*(override|virtual|abstract){0,1}\s+(\w+)\s+'
+NON_PRIVATE_METHOD_DEF_START = r'((public|global|protected)\s*(static){0,1}\s*(override|virtual|abstract){0,1}\s+' + TYPE + r'\s+'
 METHOD_DEF_END = r'\s*\((.|\n)*?\)\s*\{)'
 METHOD_DEF_END_ARGS = r'\s*\((.+?\s+.+?(.|\n)*?)\)\s*\{)'
 METHOD_DEF_END_NO_ARG = r'\s*\((\s*)*?\)\s*\{)'
-METHOD_DEF_START = r'((public|global|protected|private)\s*(static){0,1}\s*(override|virtual|abstract){0,1}\s+(\w+)\s+'
+METHOD_DEF_START = r'((public|global|protected|private)\s*(static){0,1}\s*(override|virtual|abstract){0,1}\s+' + TYPE + r'\s+'
 METHOD_DEF = METHOD_DEF_START + r'(\w+)' + METHOD_DEF_END
 METHOD_DEF_ARGS = METHOD_DEF_START + r'(\w+)' + METHOD_DEF_END_ARGS
 
