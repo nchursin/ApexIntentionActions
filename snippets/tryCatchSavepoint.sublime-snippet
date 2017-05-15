@@ -10,5 +10,5 @@ try {
 ]]></content>
 	<tabTrigger>trycatchSavepoint</tabTrigger>
 	<scope>source.apex</scope>
-	<description>Simple TRY CATCH Condition</description>
+	<description>Description: Simple TRY CATCH Condition with savepoint rollback</description>
 </snippet>
