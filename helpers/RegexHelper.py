@@ -30,6 +30,7 @@ METHOD_DEF_ARGS = METHOD_DEF_START + r'(\w+)' + METHOD_DEF_END_ARGS
 
 CONSTRUCTOR_DEF_START = r'((public|private|global|protected)\s+'
 CONSTRUCTOR = CONSTRUCTOR_DEF_START + r'(\w+)' + METHOD_DEF_END
+CONSTRUCTOR_WITH_ARGS = CONSTRUCTOR_DEF_START + r'(\w+)' + METHOD_DEF_END_ARGS
 
 log = logger.get(__name__)
 
@@ -72,8 +73,20 @@ def findMethodName(code):
 		return result[5]
 
 
+def findConstructorClassName(code):
+	result = find(CONSTRUCTOR, code)
+	if result:
+		return result[2]
+
+
 def findMethodAccessLevel(code):
 	result = find(METHOD_DEF, code)
+	if result:
+		return result[1]
+
+
+def findConstructorAccessLevel(code):
+	result = find(CONSTRUCTOR, code)
 	if result:
 		return result[1]
 
@@ -94,6 +107,12 @@ def findMethodArgs(code):
 	result = find(METHOD_DEF_ARGS, code)
 	if result:
 		return result[6]
+
+
+def findConstructorArgs(code):
+	result = find(CONSTRUCTOR_WITH_ARGS, code)
+	if result:
+		return result[3]
 
 
 def findPropIsStatic(code):
@@ -135,6 +154,12 @@ def findPropType(code):
 
 def is_method_def(line):
 	regex = METHOD_DEF
+	result = match_stripped(regex, line)
+	return result
+
+
+def is_constructor_def(line):
+	regex = CONSTRUCTOR
 	result = match_stripped(regex, line)
 	return result
 

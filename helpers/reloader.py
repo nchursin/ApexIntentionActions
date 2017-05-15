@@ -30,6 +30,7 @@ mods_load_order = [
     'PropertyActions',
     'ClassActions',
     'MethodActions',
+    'ConstructorActions',
     'ActionStore',
 
     'reloader',

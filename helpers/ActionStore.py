@@ -3,6 +3,7 @@ from . import Actions as A
 from . import PropertyActions as PA
 from . import ClassActions as CA
 from . import MethodActions as MA
+from . import ConstructorActions as CtorA
 from . import logger
 
 
@@ -32,6 +33,9 @@ actions = {
 
 	A.ADD_METHOD_OVERRIDE: MA.AddMethodOverrideChooseArgAction(),
 	A.ADD_METHOD_OVERRIDE_CREATE: MA.AddMethodOverrideAction(),
+
+	A.ADD_CONSTRUCTOR_OVERRIDE: CtorA.AddConstructorOverloadChooseArgAction(),
+	A.ADD_CONSTRUCTOR_OVERRIDE_CREATE: CtorA.AddConstructorOverloadAction(),
 }
 prop_actions = [
 	ActionStore('Add getter and setter', actions[A.ADD_GETTER_SETTER]),
@@ -47,15 +51,20 @@ class_actions = [
 method_actions = [
 	ActionStore('Generate overload', actions[A.ADD_METHOD_OVERRIDE]),
 ]
+constructor_actions = [
+	ActionStore('Generate overload', actions[A.ADD_CONSTRUCTOR_OVERRIDE]),
+]
 actions_map = {
 	'prop': prop_actions,
 	'class': class_actions,
 	'method': method_actions,
+	'constructor': constructor_actions,
 }
 regex_map = {
 	'prop': re.PROP_DEF,
 	'class': re.CLASS_DEF,
 	'method': re.METHOD_DEF_ARGS,
+	'constructor': re.CONSTRUCTOR_WITH_ARGS,
 }
 
 

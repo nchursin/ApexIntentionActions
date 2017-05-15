@@ -1,0 +1,3 @@
+{{indent}}{{access}} {{className}}({{args}}){
+{{indent}}	this({{argsToPass}});
+{{indent}}}

@@ -16,6 +16,9 @@ ADD_CONSTRUCTOR_INITIALIZER = 'AddConstructorInitializer'
 ADD_METHOD_OVERRIDE = 'AddOverload'
 ADD_METHOD_OVERRIDE_CREATE = 'CreateOverload'
 
+ADD_CONSTRUCTOR_OVERRIDE = 'AddConstructorOverload'
+ADD_CONSTRUCTOR_OVERRIDE_CREATE = 'CreateConstructorOverload'
+
 
 class Action():
 	"""Stores info on action to take on code"""
