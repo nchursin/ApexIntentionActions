@@ -101,10 +101,10 @@ class Template():
 		output_splitted = self.output.split('\n')
 		self.output = ''
 		remove_next_if_empty = False
+		first_line = True
 		for part in output_splitted:
 			if re.match(r'^\s*\}{0,1}$', part) and remove_next_if_empty:
 				if part.endswith('}'):
-					log.debug('to add >>> ' + part)
 					if self.checkIfLastLineEmpty(self.output):
 						self.output = self.output[:self.output.rindex('\n') + 1]
 						self.output += part
@@ -115,9 +115,10 @@ class Template():
 					pass
 			else:
 				# if self.checkIfLastLineEmpty(self.output):
-				log.debug('to add >>> ' + '\n' + part)
 				self.output += '\n' + part
-				remove_next_if_empty = re.match(r'^\s*$', part) or part.endswith('{')
+				if not first_line:
+					remove_next_if_empty = re.match(r'^\s*$', part) or part.endswith('{')
+			first_line = False
 		self.output = ' '.join(
 			filter(
 				lambda x: not re.match(r'^\s*$', x),
