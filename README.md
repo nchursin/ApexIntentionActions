@@ -57,6 +57,8 @@ All actions have short cut. `Ctrl+M` (`⌘+M` on Mac), then use following shortc
 Action menu has two styles: quick panel and pop-up menu.
 To switch between them use preferences command for the plugin and change the `intention_menu_mode` settings. Two options available: `quickpanel` and `popup`.
 
+To change key bindings use the `Preferences: Apex Intention Actions Key Bindings – User` command.
+
 ## License
 
 Apache 2.0
