@@ -90,9 +90,14 @@ class AddMethodOverrideAction(MethodAction):
 
 	def generate_code(self, edit):
 		# args_def = re.findMethodArgs(self.to_text)
+		place_to_insert = self.view.line(self.code_region.begin()).begin() - 1
+		indent = self.get_indent()
+		prev_line = self.view.line(place_to_insert)
+		if not prev_line:
+			indent += '\t'
 		template = TH.Template('other/override')
 		template.addVar('methodName', self.get_method_name())
-		template.addVar('indent', self.get_inner_indent())
+		template.addVar('indent', indent)
 		template.addVar('access', self.get_access_level())
 		template.addVar('static', self.is_static())
 		template.addVar('returnType', self.get_return_type())
@@ -100,7 +105,6 @@ class AddMethodOverrideAction(MethodAction):
 		template.addVar('argumentsToPass', ', '.join(self.args_pass))
 		code_to_insert = '\n' + template.compile()
 		self.view.sel().clear()
-		place_to_insert = self.view.line(self.code_region.begin()).begin() - 1
 		self.view.sel().add(sublime.Region(place_to_insert, place_to_insert))
 		self.view.run_command("insert_snippet", {"contents": code_to_insert})
 
