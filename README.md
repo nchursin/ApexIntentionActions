@@ -55,9 +55,11 @@ All actions have short cut. `Ctrl+M` (`⌘+M` on Mac), then use following shortc
 
 ## Customizations
 Action menu has two styles: quick panel and pop-up menu.
-To switch between them use preferences command for the plugin and change the `intention_menu_mode` settings. Two options available: `quickpanel` and `popup`.
+To switch between them use preferences command for the plugin and change the `intention_menu_mode` settings. Two options available: `quickpanel` and `popup`. 
 
 To change key bindings use the `Preferences: Apex Intention Actions Key Bindings – User` command.
+
+Check out the [`Customization`](https://github.com/nchursin/ApexIntentionActions/wiki/Customization) page on project's wiki!
 
 ## License
 
