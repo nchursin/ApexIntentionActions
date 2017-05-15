@@ -13,8 +13,8 @@ ADD_CONSTRUCTOR = 'AddConstructor'
 ADD_INITIALIZER = 'AddInitializer'
 ADD_CONSTRUCTOR_INITIALIZER = 'AddConstructorInitializer'
 
-ADD_METHOD_OVERRIDE = 'AddOverride'
-ADD_METHOD_OVERRIDE_CREATE = 'CreateOverride'
+ADD_METHOD_OVERRIDE = 'AddOverload'
+ADD_METHOD_OVERRIDE_CREATE = 'CreateOverload'
 
 
 class Action():

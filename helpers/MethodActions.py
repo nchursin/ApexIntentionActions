@@ -95,7 +95,7 @@ class AddMethodOverrideAction(MethodAction):
 		prev_line = self.view.line(place_to_insert)
 		if not prev_line:
 			indent += '\t'
-		template = TH.Template('other/override')
+		template = TH.Template('other/overload')
 		template.addVar('methodName', self.get_method_name())
 		template.addVar('indent', indent)
 		template.addVar('access', self.get_access_level())
