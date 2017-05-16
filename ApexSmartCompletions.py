@@ -2,10 +2,15 @@ import sys
 import imp
 import sublime_plugin
 import sublime
+import os.path
 
 
 # Make sure all dependencies are reloaded on upgrade
-reloader_path = 'Apex Intention Actions.helpers.reloader'
+pack_name = os.path.dirname(os.path.realpath(__file__))
+pack_name, pack_ext = os.path.splitext(pack_name)
+pack_name = os.path.basename(pack_name)
+
+reloader_path = pack_name + '.helpers.reloader'
 if reloader_path in sys.modules:
 	imp.reload(sys.modules[reloader_path])
 
@@ -90,3 +95,25 @@ class RunActionCurrentLineCommand(sublime_plugin.TextCommand):
 		else:
 			log.info("Action is not applicable.")
 		del action
+
+
+class OpenApexInetntionActionsSettingsFileCommand(sublime_plugin.WindowCommand):
+	def is_enabled(self, file, platform=None):
+		return platform is None or platform.lower() == sublime.platform().lower()
+
+	def is_visible(self, file, platform=None):
+		return self.is_enabled(file, platform)
+
+	def run(self, file, platform=None):
+		path = os.path.join('${package}', file)
+		package = pack_name
+		settings_file = sublime.expand_variables(path, {"package": package})
+		settings_file = os.path.join('${packages}', settings_file)
+		print('settings_file >> ', settings_file)
+		print('file >> ', file)
+		args = {
+			'file': settings_file
+		}
+		if platform is not None:
+			args['platform'] = platform
+		self.window.run_command('open_file', args)

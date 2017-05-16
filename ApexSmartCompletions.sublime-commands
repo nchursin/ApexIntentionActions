@@ -5,9 +5,9 @@
 	},
 	{
         "caption": "Preferences: Apex Intention Actions – Default",
-        "command": "open_file", "args":
+        "command": "open_apex_inetntion_actions_settings_file", "args":
         {
-            "file": "${packages}/Apex Intention Actions/SmartApexPrefs.sublime-settings"
+            "file": "SmartApexPrefs.sublime-settings"
         }
     },
 	{
@@ -20,9 +20,9 @@
 
     {
         "caption": "Preferences: Apex Intention Actions Key Bindings – Default",
-        "command": "open_file", "args":
+        "command": "open_apex_inetntion_actions_settings_file", "args":
         {
-            "file": "${packages}/Apex Intention Actions/Default (OSX).sublime-keymap",
+            "file": "Default (OSX).sublime-keymap",
             "platform": "OSX"
         }
     },
@@ -37,9 +37,9 @@
 
     {
         "caption": "Preferences: Apex Intention Actions Key Bindings – Default",
-        "command": "open_file", "args":
+        "command": "open_apex_inetntion_actions_settings_file", "args":
         {
-            "file": "${packages}/Apex Intention Actions/Default (Linux).sublime-keymap",
+            "file": "Default (Linux).sublime-keymap",
             "platform": "Linux"
         }
     },
@@ -54,9 +54,9 @@
 
     {
         "caption": "Preferences: Apex Intention Actions Key Bindings – Default",
-        "command": "open_file", "args":
+        "command": "open_apex_inetntion_actions_settings_file", "args":
         {
-            "file": "${packages}/Apex Intention Actions/Default (Windows).sublime-keymap",
+            "file": "Default (Windows).sublime-keymap",
             "platform": "Windows"
         }
     },
