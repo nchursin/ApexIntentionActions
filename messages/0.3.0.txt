@@ -1,0 +1,11 @@
+Apex Inention Actions v0.3.0
+----------------------------
+
+Featuring new action: "Add overload" for constructors! 🎉
+
+Now you can quickly generate an overload for a constructor with one overloaded parameter - just like for methods.
+Use "Alt+Space" on a method with arguments to generate an overloaded method.
+
+No keyboard shortcut is available at this moment.
+
+Happy coding!
