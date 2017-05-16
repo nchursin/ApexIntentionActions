@@ -1,11 +1,17 @@
 import sys
 import imp
+import os.path
 
 from . import logger
 log = logger.get(__name__)
 
 # Dependecy reloader stolen from the Emmet plugin
-parent = 'Apex Intention Actions.helpers'
+pack_name = os.path.dirname(os.path.dirname(os.path.realpath(__file__)))
+pack_name, ext = os.path.splitext(pack_name)
+pack_name = os.path.basename(pack_name)
+
+parent = pack_name + '.helpers'
+print('parent >> ', parent)
 
 reload_mods = []
 
