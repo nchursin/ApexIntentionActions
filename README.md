@@ -11,6 +11,15 @@ Snippets and commands to speed up you Salesfroce development
 Since MavensMate requires ST 3, there will be no ST 2 support.
 
 ## Installation
+### From repository via Package Control
+
+This requires [Package Control](https://packagecontrol.io/installation) to be installed.
+
+0. Remove the package if you have installed it manually previously.
+1. Use `Package Control: Add Repository` command. Paste this repository URL.
+2. Use `Package Control: Install Package`.
+3. Search for `ApexIntentionActions`. Hit `Enter` when you find it.
+
 ### Manual
 
 1. Download [a release](https://github.com/nchursin/ApexIntentionActions/releases "Releases page"). Rename it to `Apex Intention Actions.sublime-package`
