@@ -1,0 +1,11 @@
+Apex Inention Actions v0.2.0
+----------------------------
+
+Featuring new action: "Add overload"! 🎉
+
+Now you can quickly generate an overload for a method with one overloaded parameter.
+Use "Alt+Space" on a method with arguments to generate an overloaded method.
+
+Hot key for the new action is "Ctrl+M, Ctrl+O" ("⌘+M, ⌘+O" for Mac).
+
+Happy coding!

@@ -1,0 +1,6 @@
+Apex Inention Actions v0.2.3
+----------------------------
+
+- Fixed type regex issue
+
+- Updated some snippets' descriptions

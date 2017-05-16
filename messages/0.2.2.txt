@@ -1,0 +1,6 @@
+Apex Inention Actions v0.2.2
+----------------------------
+
+- Fixed Add override for methods where the first argument is a list.
+
+- Removed space after method name in overload methods.
