@@ -8,4 +8,9 @@ Use "Alt+Space" on a method with arguments to generate an overloaded method.
 
 No keyboard shortcut is available at this moment.
 
+Also:
+1. New way of installation - via Package Control by adding the repo to it.
+2. Fixed indentation for method overrides.
+3. Slightly changed formatting.
+
 Happy coding!
