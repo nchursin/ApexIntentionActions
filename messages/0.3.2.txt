@@ -1,0 +1,6 @@
+Apex Inention Actions v0.3.2
+----------------------------
+
+- Fixes failling to find action if method return type or value type includes underscores.
+
+Happy coding!
