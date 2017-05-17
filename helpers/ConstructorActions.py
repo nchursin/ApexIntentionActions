@@ -33,7 +33,7 @@ class ConstructorAction(A.Action):
 
 	def get_arguments(self):
 		result = re.findConstructorArgs(self.to_text())
-		return [el.strip() for el in result.split(',')]
+		return [el.strip() for el in re.split_arguments(result)]
 
 
 class AddConstructorOverloadChooseArgAction(ConstructorAction):

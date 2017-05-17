@@ -43,7 +43,7 @@ class MethodAction(A.Action):
 
 	def get_arguments(self):
 		result = re.findMethodArgs(self.to_text())
-		return [el.strip() for el in result.split(',')]
+		return [el.strip() for el in re.split_arguments(result)]
 
 
 class AddMethodOverrideChooseArgAction(MethodAction):

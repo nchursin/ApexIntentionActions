@@ -115,6 +115,12 @@ def findConstructorArgs(code):
 		return result[3]
 
 
+def split_arguments(args):
+	arg_splitter = r', (?![^\<]*>)'
+	result = re.split(arg_splitter, args)
+	return result
+
+
 def findPropIsStatic(code):
 	result = find(PROP_NAME, code)
 	if result:
