@@ -1,0 +1,7 @@
+Apex Inention Actions v0.3.1
+----------------------------
+
+- Fixes "Add overload" action for methods/constructors with Map parameters.
+- Fixes indent if previous line already contains indent
+
+Happy coding!
