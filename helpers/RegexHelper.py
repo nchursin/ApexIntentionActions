@@ -3,7 +3,7 @@ from . import logger
 
 LETTERS = r'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz'
 NUMBERS = r'1234567890'
-SYMBOLS = r'\.,<> '
+SYMBOLS = r'\.,<>_ '
 LETTERS_NUMBERS = ''.join((LETTERS, NUMBERS))
 ALL_IN_ONE = ''.join((LETTERS_NUMBERS, SYMBOLS))
 
