@@ -92,9 +92,13 @@ class AddMethodOverrideAction(MethodAction):
 		# args_def = re.findMethodArgs(self.to_text)
 		place_to_insert = self.view.line(self.code_region.begin()).begin() - 1
 		indent = self.get_indent()
+		log.info('indent >> ', indent)
 		prev_line = self.view.line(place_to_insert)
-		if not prev_line:
+		prev_line = self.to_text(prev_line)
+		if not prev_line and ' ' not in prev_line and '\t' not in prev_line:
 			indent += '\t'
+		else:
+			indent = ''
 		template = TH.Template('other/overload')
 		template.addVar('methodName', self.get_method_name())
 		template.addVar('indent', indent)
