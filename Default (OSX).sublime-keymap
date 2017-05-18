@@ -26,6 +26,17 @@
 		"args": {"action_name": "AddConstructorParameter"}
 	},
 	{
+		"keys": ["super+m", "alt+g"], 
+		"command": "run_action_current_line",
+		"args": {"action_name": "AddGetSetProps"}
+	},
+	{
+		"keys": ["super+m", "alt+s"], 
+		"command": "run_action_current_line",
+		"args": {"action_name": "AddGetSetProps"}
+	},
+
+	{
 		"keys": ["super+m", "c"], 
 		"command": "run_action_current_line",
 		"args": {"action_name": "AddConstructor"}
@@ -49,6 +60,6 @@
 	{
 		"keys": ["super+m", "super+o"], 
 		"command": "run_action_current_line",
-		"args": {"action_name": "AddOverride"}
+		"args": {"action_name": "AddOverload"}
 	},
 ]
