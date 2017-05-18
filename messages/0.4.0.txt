@@ -1,0 +1,13 @@
+Apex Inention Actions v0.4.0
+----------------------------
+
+Featuring new action: "Add { get; set; }" for properties! 🎉
+
+Now you can quickly add {get;set;} to any property.
+
+Keyboard shortcut is ["Ctrl+M", "Shift+S"] or ["Ctrl+M", "Shift+G"] (["⌘+M", "Shift+S"] or ["⌘+M", "Shift+G"] on Mac).
+
+- Fixes failling to find action if method return type or value type includes underscores.
+- Fixes "Add overload" key binding.
+
+Happy coding!
