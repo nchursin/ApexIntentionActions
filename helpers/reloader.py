@@ -30,6 +30,7 @@ mods_load_order = [
     'logger',
 
     'FileReader',
+    'SublimeHelper',
     'RegexHelper',
     'TemplateHelper',
     'Actions',
