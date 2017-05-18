@@ -3,7 +3,8 @@ from . import TemplateHelper as TH
 from . import RegexHelper as re
 from . import Actions as A
 from . import ClassActions as CA
-from .SublimeHelper import SublimeHelper as SH
+from . import SublimeHelper as SH
+from .SublimeHelper import ViewHelper as VH
 
 
 log = logger.get(__name__)
@@ -146,12 +147,15 @@ class AddGetSetProps(PropertyAction):
 		super(AddGetSetProps, self).__init__(A.ADD_GET_SET_PROPS)
 
 	def generate_code(self, edit):
-		to_insert = ' { ${1:public} get; ${2:public} set; }'
-		# to_insert = ' { get; set; }'
+		use_access = SH.get_setting('generate_access_get_set')
+		if use_access:
+			to_insert = ' { ${1:public} get; ${2:public} set; }'
+		else:
+			to_insert = ' { get; set; }'
 		line_text = self.to_text()
 		index_of_end = line_text.rfind(';')
 		index_of_end = self.begin() + index_of_end
-		sublimeHelper = SH(self.view)
+		sublimeHelper = VH(self.view)
 		sublimeHelper.insert_snippet(to_insert, (index_of_end, index_of_end + 1))
 
 	def is_applicable(self):

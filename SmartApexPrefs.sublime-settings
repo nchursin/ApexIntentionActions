@@ -1,4 +1,5 @@
 {
 	"debug": false,
-	"intention_menu_mode": "quickpanel"
+	"intention_menu_mode": "quickpanel",
+	"generate_access_get_set": true
 }

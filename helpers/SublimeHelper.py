@@ -1,9 +1,9 @@
 import sublime
 
 
-class SublimeHelper():
+class ViewHelper():
 	def __init__(self, view):
-		super(SublimeHelper, self).__init__()
+		super(ViewHelper, self).__init__()
 		self.view = view
 
 	def insert_snippet(self, snippet, coords):
@@ -20,3 +20,9 @@ class SublimeHelper():
 		self.view.sel().clear()
 		self.view.sel().add(region)
 		self.view.run_command("insert_snippet", {"contents": snippet})
+
+
+def get_setting(setting_name, settings_file='SmartApexPrefs.sublime-settings'):
+	settings = sublime.load_settings(settings_file)
+	result = settings.get(setting_name)
+	return result
