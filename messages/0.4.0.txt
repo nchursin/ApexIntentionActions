@@ -5,9 +5,9 @@ Featuring new action: "Add { get; set; }" for properties! 🎉
 
 Now you can quickly add {get;set;} to any property.
 
-Keyboard shortcut is ["Ctrl+M", "Shift+S"] or ["Ctrl+M", "Shift+G"] (["⌘+M", "Shift+S"] or ["⌘+M", "Shift+G"] on Mac).
+Keyboard shortcut is ["Ctrl+M", "Alt+S"] or ["Ctrl+M", "Alt+G"] (["⌘+M", "Alt+S"] or ["⌘+M", "Alt+G"] on Mac).
 
-- Fixes failling to find action if method return type or value type includes underscores.
+- Fixes searching action if method return type or value type includes underscores.
 - Fixes "Add overload" key binding.
 
 Happy coding!
