@@ -8,6 +8,7 @@ ADD_GETTER = 'AddGetter'
 ADD_SETTER = 'AddSetter'
 ADD_GETTER_SETTER = 'AddGetterSetter'
 ADD_CONSTRUCTOR_PARAMETER = 'AddConstructorParameter'
+ADD_GET_SET_PROPS = 'AddGetSetProps'
 
 ADD_CONSTRUCTOR = 'AddConstructor'
 ADD_INITIALIZER = 'AddInitializer'
@@ -128,6 +129,12 @@ class Action():
 			self.requireCode()
 			region = self.code_region
 		return self.view.substr(region)
+
+	def begin(self):
+		return self.code_region.begin()
+
+	def end(self):
+		return self.code_region.end()
 
 	def get_indent(self):
 		class_region = self.get_class_code()
