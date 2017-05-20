@@ -3,6 +3,7 @@ from . import logger
 from . import Actions as A
 from . import RegexHelper as re
 from . import TemplateHelper as TH
+from . import ConstructorActions as CA
 
 
 log = logger.get(__name__)
@@ -115,3 +116,29 @@ class AddMethodOverrideAction(MethodAction):
 	def is_applicable(self):
 		result = super(AddMethodOverrideAction, self).is_applicable()
 		return result and re.find(re.METHOD_DEF_ARGS, self.to_text())
+
+
+class ChooseOverloadAction(A.Action):
+	def __init__(self):
+		super(ChooseOverloadAction, self).__init__(A.ADD_METHOD_OVERLOAD)
+		self.method_overload = AddMethodOverrideChooseArgAction()
+		self.constr_overload = CA.AddConstructorOverloadChooseArgAction()
+
+	def setView(self, view):
+		super(ChooseOverloadAction, self).setView(view)
+		self.method_overload.setView(view)
+		self.constr_overload.setView(view)
+
+	def setCode(self, code_region):
+		super(ChooseOverloadAction, self).setCode(code_region)
+		self.method_overload.setCode(code_region)
+		self.constr_overload.setCode(code_region)
+
+	def is_applicable(self):
+		return self.method_overload.is_applicable() or self.constr_overload.is_applicable()
+
+	def run(self, edit, args):
+		if self.method_overload.is_applicable():
+			self.method_overload.run(edit, args)
+		if self.constr_overload.is_applicable():
+			self.constr_overload.run(edit, args)

@@ -32,6 +32,8 @@ actions = {
 	A.ADD_INITIALIZER: CA.AddInitializerAction(),
 	A.ADD_CONSTRUCTOR_INITIALIZER: CA.AddConstructorInitializerAction(),
 
+	A.ADD_OVERLOAD: MA.ChooseOverloadAction(),
+
 	A.ADD_METHOD_OVERRIDE: MA.AddMethodOverrideChooseArgAction(),
 	A.ADD_METHOD_OVERRIDE_CREATE: MA.AddMethodOverrideAction(),
 
