@@ -10,10 +10,11 @@ ALL_IN_ONE = ''.join((LETTERS_NUMBERS, SYMBOLS))
 TYPE = r'([' + ALL_IN_ONE + r']+)'
 
 PROP_DEF = r'(public|private|global|protected)\s*(static){0,1}\s+' + TYPE + r'\s+(\w+)\s*;'
-PROP_DEF_GET_SET = r'(public|private|global|protected)\s*(static){0,1}\s+\w+\s+(\w+)\s*\{\s*(get(;|(\{(.|\n)*?\}))\s*set(;|(\{(.|\n)*?\})))\}'
+PROP_DEF_GET_SET = r'(public|private|global|protected)\s*(static){0,1}\s+' + TYPE + r'\s+(\w+)\s*\{\s*(get(;|\{(.|\n)*?\}))\s*(set(;|\{(.|\n)*?\}))\s*\}'
+PROP_DEF_GET_SET_OPTIONAL = r'((public|private|global|protected)\s*(static){0,1}\s+' + TYPE + r'\s+(\w+)\s*(;|\{\s*(get(;|\{(.|\n)*?\}))\s*(set(;|\{(.|\n)*?\}))\s*\}))'
 SECURE_PROP_DEF = r'(private|protected)\s*(static){0,1}\s+' + TYPE + r'\s+(\w+)\s*;'
 SECURE_PROP_DEF_GET_SET = r'(private|protected)\s*(static){0,1}\s+' + TYPE + r'\s+(\w+)\s*\{\s*(get(;|(\{(.|\n)*?\}))\s*set(;|(\{(.|\n)*?\})))\}'
-PROP_NAME = r'((public|private|global|protected)\s*(static){0,1}\s+' + TYPE + r'\s+(\w+)\s*;)'
+# PROP_NAME = r'((public|private|global|protected)\s*(static){0,1}\s+' + TYPE + r'\s+(\w+)\s*;)'
 
 CLASS_DEF = r'((public|private|global|protected)\s*(virtual|abstract|with sharing|without sharing){0,1}\s+class\s+(\w+)\s*.*{)'
 CLASS_NAME = r'(class\s+(\w+)\s+.*{)'
@@ -62,7 +63,7 @@ def findClassName(code):
 
 
 def findPropName(code):
-	result = find(PROP_NAME, code)
+	result = find(PROP_DEF_GET_SET_OPTIONAL, code)
 	if result:
 		return result[4]
 
@@ -122,7 +123,7 @@ def split_arguments(args):
 
 
 def findPropIsStatic(code):
-	result = find(PROP_NAME, code)
+	result = find(PROP_DEF_GET_SET_OPTIONAL, code)
 	if result:
 		return result[2].lower() == 'static'
 
@@ -153,7 +154,7 @@ def findMethod(code, method_name):
 
 
 def findPropType(code):
-	result = find(PROP_NAME, code)
+	result = find(PROP_DEF_GET_SET_OPTIONAL, code)
 	if result:
 		return result[3]
 
