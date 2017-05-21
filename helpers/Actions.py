@@ -17,7 +17,9 @@ ADD_CONSTRUCTOR_INITIALIZER = 'AddConstructorInitializer'
 ADD_OVERLOAD = 'AddOverload'
 
 ADD_METHOD_OVERRIDE = 'AddMethodOverload'
+ADD_METHOD_OVERLOAD = 'AddMethodOverload'
 ADD_METHOD_OVERRIDE_CREATE = 'CreateMethodOverload'
+ADD_METHOD_OVERLOAD_CREATE = 'CreateMethodOverload'
 
 ADD_CONSTRUCTOR_OVERRIDE = 'AddConstructorOverload'
 ADD_CONSTRUCTOR_OVERRIDE_CREATE = 'CreateConstructorOverload'
