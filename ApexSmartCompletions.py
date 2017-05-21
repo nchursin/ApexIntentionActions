@@ -105,12 +105,10 @@ class OpenApexInetntionActionsSettingsFileCommand(sublime_plugin.WindowCommand):
 		return self.is_enabled(file, platform)
 
 	def run(self, file, platform=None):
-		path = os.path.join('${package}', file)
+		path = '${package}/' + file
 		package = pack_name
 		settings_file = sublime.expand_variables(path, {"package": package})
-		settings_file = os.path.join('${packages}', settings_file)
-		print('settings_file >> ', settings_file)
-		print('file >> ', file)
+		settings_file = '${packages}/' + settings_file
 		args = {
 			'file': settings_file
 		}
