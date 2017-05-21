@@ -3,6 +3,8 @@ from . import logger
 from . import Actions as A
 from . import RegexHelper as re
 from . import TemplateHelper as TH
+from . import ConstructorActions as CA
+from . import SublimeHelper as SH
 
 
 log = logger.get(__name__)
@@ -108,10 +110,59 @@ class AddMethodOverrideAction(MethodAction):
 		template.addVar('methodArguments', ', '.join(self.args_def))
 		template.addVar('argumentsToPass', ', '.join(self.args_pass))
 		code_to_insert = '\n' + template.compile()
-		self.view.sel().clear()
-		self.view.sel().add(sublime.Region(place_to_insert, place_to_insert))
-		self.view.run_command("insert_snippet", {"contents": code_to_insert})
+		self.insaert_if_none(code_to_insert)
+
+	def insaert_if_none(self, code_to_insert):
+		code_splitted = code_to_insert.split('\n')
+		for line in code_splitted:
+			if line:
+				definition = line.strip()
+				break
+		definition = definition.translate(str.maketrans({
+			"(": r"\(",
+			")": r"\)",
+			"{": r"\{",
+			"}": r"\}",
+			".": r"\."
+		}))
+		log.info('definition >> ', definition)
+		log.info('definition in view >> ', self.view.find(definition, 0, sublime.IGNORECASE))
+		# log.info('definition in view >> ', self.view.find('public void activateOrdersAuto\\(Map<Id, Shit> ShitsMap\\){', 0, sublime.IGNORECASE))
+		if self.view.find_all(definition, sublime.IGNORECASE):
+			self.view.show_popup(
+				content='Overload already generated!',
+				flags=sublime.HIDE_ON_MOUSE_MOVE_AWAY)
+		else:
+			view_helper = SH.ViewHelper(self.view)
+			place_to_insert = self.view.line(self.code_region.begin()).begin() - 1
+			view_helper.insert_snippet(code_to_insert, place_to_insert)
 
 	def is_applicable(self):
 		result = super(AddMethodOverrideAction, self).is_applicable()
 		return result and re.find(re.METHOD_DEF_ARGS, self.to_text())
+
+
+class ChooseOverloadAction(A.Action):
+	def __init__(self):
+		super(ChooseOverloadAction, self).__init__(A.ADD_METHOD_OVERLOAD)
+		self.method_overload = AddMethodOverrideChooseArgAction()
+		self.constr_overload = CA.AddConstructorOverloadChooseArgAction()
+
+	def setView(self, view):
+		super(ChooseOverloadAction, self).setView(view)
+		self.method_overload.setView(view)
+		self.constr_overload.setView(view)
+
+	def setCode(self, code_region):
+		super(ChooseOverloadAction, self).setCode(code_region)
+		self.method_overload.setCode(code_region)
+		self.constr_overload.setCode(code_region)
+
+	def is_applicable(self):
+		return self.method_overload.is_applicable() or self.constr_overload.is_applicable()
+
+	def run(self, edit, args):
+		if self.method_overload.is_applicable():
+			self.method_overload.run(edit, args)
+		if self.constr_overload.is_applicable():
+			self.constr_overload.run(edit, args)

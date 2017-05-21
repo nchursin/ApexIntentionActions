@@ -3,6 +3,7 @@ from . import logger
 from . import Actions as A
 from . import RegexHelper as re
 from . import TemplateHelper as TH
+from . import SublimeHelper as SH
 
 
 log = logger.get(__name__)
@@ -95,9 +96,32 @@ class AddConstructorOverloadAction(ConstructorAction):
 		template.addVar('args', ', '.join(self.args_def))
 		template.addVar('argsToPass', ', '.join(self.args_pass))
 		code_to_insert = '\n' + template.compile()
-		self.view.sel().clear()
-		self.view.sel().add(sublime.Region(place_to_insert, place_to_insert))
-		self.view.run_command("insert_snippet", {"contents": code_to_insert})
+		self.insaert_if_none(code_to_insert)
+
+	def insaert_if_none(self, code_to_insert):
+		code_splitted = code_to_insert.split('\n')
+		for line in code_splitted:
+			if line:
+				definition = line.strip()
+				break
+		definition = definition.translate(str.maketrans({
+			"(": r"\(",
+			")": r"\)",
+			"{": r"\{",
+			"}": r"\}",
+			".": r"\."
+		}))
+		log.info('definition >> ', definition)
+		log.info('definition in view >> ', self.view.find(definition, 0, sublime.IGNORECASE))
+		# log.info('definition in view >> ', self.view.find('public void activateOrdersAuto\\(Map<Id, Shit> ShitsMap\\){', 0, sublime.IGNORECASE))
+		if self.view.find_all(definition, sublime.IGNORECASE):
+			self.view.show_popup(
+				content='Overload already generated!',
+				flags=sublime.HIDE_ON_MOUSE_MOVE_AWAY)
+		else:
+			view_helper = SH.ViewHelper(self.view)
+			place_to_insert = self.view.line(self.code_region.begin()).begin() - 1
+			view_helper.insert_snippet(code_to_insert, place_to_insert)
 
 	def is_applicable(self):
 		result = super(AddConstructorOverloadAction, self).is_applicable()
