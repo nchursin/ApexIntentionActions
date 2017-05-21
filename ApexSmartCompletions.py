@@ -98,22 +98,19 @@ class RunActionCurrentLineCommand(sublime_plugin.TextCommand):
 
 
 class OpenApexInetntionActionsSettingsFileCommand(sublime_plugin.WindowCommand):
-	def is_enabled(self, file, platform=None):
+	def is_enabled(self, file, platform=None, default='{\n\n}'):
 		return platform is None or platform.lower() == sublime.platform().lower()
 
-	def is_visible(self, file, platform=None):
+	def is_visible(self, file, platform=None, default='{\n\n}'):
 		return self.is_enabled(file, platform)
 
-	def run(self, file, platform=None):
-		path = os.path.join('${package}', file)
+	def run(self, file, platform=None, default='{\n\t${0}\n}'):
+		path = '${package}/' + file
 		package = pack_name
 		settings_file = sublime.expand_variables(path, {"package": package})
-		settings_file = os.path.join('${packages}', settings_file)
-		print('settings_file >> ', settings_file)
-		print('file >> ', file)
+		settings_file = '${packages}/' + settings_file
 		args = {
-			'file': settings_file
+			'base_file': settings_file,
+			'default': default
 		}
-		if platform is not None:
-			args['platform'] = platform
-		self.window.run_command('open_file', args)
+		self.window.run_command('edit_settings', args)
