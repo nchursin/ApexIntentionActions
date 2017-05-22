@@ -117,8 +117,10 @@ def findConstructorArgs(code):
 
 
 def split_arguments(args):
-	arg_splitter = r', (?![^\<]*>)'
-	result = re.split(arg_splitter, args)
+	# arg_splitter = r', (?![^\<]*>)'
+	# result = re.split(arg_splitter, args)
+	arg_splitter = r'((\w+|(.+?<.+?(?=>)>+?)) \w+)(?:,?)'
+	result = [el[0].strip() for el in find_all(arg_splitter, args)]
 	return result
 
 
