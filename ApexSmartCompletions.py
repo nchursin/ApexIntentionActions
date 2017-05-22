@@ -25,6 +25,13 @@ log = logger.get(__name__)
 
 
 class ShowActionsCommand(sublime_plugin.TextCommand):
+	def is_enabled(self, edit=None):
+		result = self.view.match_selector(0, 'source.apex')
+		return result
+
+	def is_visible(self, edit=None):
+		return self.is_enabled(edit)
+
 	def run(self, edit):
 		self.set_menu()
 
@@ -70,6 +77,13 @@ class ShowActionsCommand(sublime_plugin.TextCommand):
 
 
 class RunActionCommand(sublime_plugin.TextCommand):
+	def is_enabled(self, edit=None):
+		result = self.view.match_selector(0, 'source.apex')
+		return result
+
+	def is_visible(self, edit=None):
+		return self.is_enabled(edit)
+
 	def run(self, edit, action_name, subl_line_start, subl_line_end, **args):
 		log.info("Firing action: " + action_name)
 		action = AS.actions[action_name]
@@ -83,6 +97,13 @@ class RunActionCommand(sublime_plugin.TextCommand):
 
 
 class RunActionCurrentLineCommand(sublime_plugin.TextCommand):
+	def is_enabled(self, edit=None):
+		result = self.view.match_selector(0, 'source.apex')
+		return result
+
+	def is_visible(self, edit=None):
+		return self.is_enabled(edit)
+
 	def run(self, edit, action_name, **args):
 		log.info("Firing action: " + action_name)
 		region = self.view.sel()[0]
