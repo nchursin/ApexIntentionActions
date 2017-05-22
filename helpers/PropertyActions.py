@@ -160,4 +160,11 @@ class AddGetSetProps(PropertyAction):
 
 	def is_applicable(self):
 		result = super(AddGetSetProps, self).is_applicable()
+		getter = AddGetterAction()
+		getter.setView(self.view)
+		getter.setCode(self.code_region)
+		setter = AddSetterAction()
+		setter.setView(self.view)
+		setter.setCode(self.code_region)
+		result = result and setter.is_applicable() and getter.is_applicable()
 		return result

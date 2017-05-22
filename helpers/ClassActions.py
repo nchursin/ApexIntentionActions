@@ -2,6 +2,7 @@ from . import logger
 from . import Actions as A
 from . import TemplateHelper as TH
 from . import RegexHelper as re
+import sublime
 
 
 log = logger.get(__name__)
@@ -12,9 +13,20 @@ class ClassAction(A.Action):
 		super(ClassAction, self).__init__(name)
 
 	def get_class_code(self):
-		log.debug('get_class_code >> ' + self.view.substr(
-			self.full_region(self.view.indented_region(self.code_region.end() + 1))))
-		return self.full_region(self.view.indented_region(self.code_region.end() + 1))
+		log.debug('indented get_class_code >> ', self.to_text())
+		full_region = self.full_region(self.view.indented_region(
+			self.code_region.end() + 1))
+		indented_defn = self.to_text(
+			self.view.line(
+				full_region.begin())).strip()
+		log.debug('full_region >> ', self.to_text(full_region))
+		if indented_defn != self.to_text().strip():
+			class_end = self.view.find(r'\}', self.code_region.end())
+			result = sublime.Region(self.code_region.begin(), class_end.end())
+		else:
+			result = full_region
+		log.debug('get_class_code >> ', self.to_text(result))
+		return result
 
 	def is_applicable(self):
 		class_regex = r'(public|private|global|protected)\s*(virtual|abstract|with sharing|without sharing){0,1}\s+class\s+(\w+)\s*.*{'

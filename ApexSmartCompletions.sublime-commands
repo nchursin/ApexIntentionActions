@@ -4,22 +4,15 @@
 		"command": "show_actions" 
 	},
 	{
-        "caption": "Preferences: Apex Intention Actions – Default",
+        "caption": "Preferences: Apex Intention Actions",
         "command": "open_apex_inetntion_actions_settings_file", "args":
         {
-            "file": "SmartApexPrefs.sublime-settings"
+            "file": "SmartApexPrefs.sublime-settings",
+            "default": "{\n\t/**Apex Intention Actions User Settings**/\n\t${0}\n}"
         }
     },
-	{
-        "caption": "Preferences: Apex Intention Actions – User",
-        "command": "open_file", "args":
-        {
-            "file": "${packages}/User/SmartApexPrefs.sublime-settings"
-        }
-    },
-
     {
-        "caption": "Preferences: Apex Intention Actions Key Bindings – Default",
+        "caption": "Preferences: Apex Intention Actions Key Bindings",
         "command": "open_apex_inetntion_actions_settings_file", "args":
         {
             "file": "Default (OSX).sublime-keymap",
@@ -27,16 +20,7 @@
         }
     },
     {
-        "caption": "Preferences: Apex Intention Actions Key Bindings – User",
-        "command": "open_file", "args":
-        {
-            "file": "${packages}/User/Default (OSX).sublime-keymap",
-            "platform": "OSX"
-        }
-    },
-
-    {
-        "caption": "Preferences: Apex Intention Actions Key Bindings – Default",
+        "caption": "Preferences: Apex Intention Actions Key Bindings",
         "command": "open_apex_inetntion_actions_settings_file", "args":
         {
             "file": "Default (Linux).sublime-keymap",
@@ -44,27 +28,10 @@
         }
     },
     {
-        "caption": "Preferences: Apex Intention Actions Key Bindings – User",
-        "command": "open_file", "args":
-        {
-            "file": "${packages}/User/Default (Linux).sublime-keymap",
-            "platform": "Linux"
-        }
-    },
-
-    {
-        "caption": "Preferences: Apex Intention Actions Key Bindings – Default",
+        "caption": "Preferences: Apex Intention Actions Key Bindings",
         "command": "open_apex_inetntion_actions_settings_file", "args":
         {
             "file": "Default (Windows).sublime-keymap",
-            "platform": "Windows"
-        }
-    },
-    {
-        "caption": "Preferences: Apex Intention Actions Key Bindings – User",
-        "command": "open_file", "args":
-        {
-            "file": "${packages}/User/Default (Windows).sublime-keymap",
             "platform": "Windows"
         }
     }

@@ -65,7 +65,7 @@ actions_map = {
 	'constructor': constructor_actions,
 }
 regex_map = {
-	'prop': re.PROP_DEF,
+	'prop': re.PROP_DEF_GET_SET_OPTIONAL,
 	'class': re.CLASS_DEF,
 	'method': re.METHOD_DEF_ARGS,
 	'constructor': re.CONSTRUCTOR_WITH_ARGS,
@@ -74,7 +74,6 @@ regex_map = {
 
 def getActions(view, line_reg):
 	result = []
-	log.info('re.METHOD_DEF_ARGS >> ', re.METHOD_DEF_ARGS)
 	line = view.substr(line_reg)
 	for key, regex in regex_map.items():
 		if(re.match_stripped(regex, line)):

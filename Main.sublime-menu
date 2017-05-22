@@ -1,0 +1,54 @@
+[
+	{
+		"id": "preferences",
+		"children":
+		[
+			{
+				"id": "package-settings",
+				"caption": "Package Settings",
+				"children":
+				[
+					{
+						"id": "apex-intention-actions-settings",
+						"caption": "Apex Intention Actions",
+						"children":
+						[
+							{
+								"caption": "Settings",
+								"command": "open_apex_inetntion_actions_settings_file", "args":
+								{
+									"file": "SmartApexPrefs.sublime-settings",
+									"default": "{\n\t/**Apex Intention Actions User Settings**/\n\t${0}\n}"
+								}
+							},
+							{
+								"caption": "Key Bindings",
+								"command": "open_apex_inetntion_actions_settings_file", "args":
+								{
+									"file": "Default (OSX).sublime-keymap",
+									"platform": "OSX"
+								}
+							},
+							{
+								"caption": "Key Bindings",
+								"command": "open_apex_inetntion_actions_settings_file", "args":
+								{
+									"file": "Default (Linux).sublime-keymap",
+									"platform": "Linux"
+								}
+							},
+							{
+								"caption": "Key Bindings",
+								"command": "open_apex_inetntion_actions_settings_file", "args":
+								{
+									"file": "Default (Windows).sublime-keymap",
+									"platform": "Windows"
+								}
+							}
+						]
+					}
+				]
+			}
+		]
+	}
+]
