@@ -2,6 +2,7 @@ from . import logger
 from . import Actions as A
 from . import TemplateHelper as TH
 from . import RegexHelper as re
+from . import SublimeHelper as SH
 import sublime
 
 
@@ -58,7 +59,8 @@ class AddInitializerAction(ClassAction):
 		constr_regions = self.find_constructors()
 		template = TH.Template('other/initializer')
 		template.addVar('indent', self.get_inner_indent())
-		self.view.insert(edit, self.find_end_of_class().begin(), template.compile())
+		view_helper = SH.ViewHelper(self.view)
+		view_helper.insert_snippet(template.compile(), self.find_end_of_class().begin())
 		init_call = '\n' + self.get_inner_indent() + '\t' + self.init_method_name + '();'
 		for i in range(0, len(constr_regions)):
 			constr = constr_regions[i]

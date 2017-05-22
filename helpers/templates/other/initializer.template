@@ -1,5 +1,5 @@
 
 
-{{indent}}private void init() {
-{{indent}}	// initializer code
-{{indent}}}
+private void init() {
+	${0:// initializer code}
+}
