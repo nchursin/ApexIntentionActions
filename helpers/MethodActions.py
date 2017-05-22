@@ -47,6 +47,10 @@ class MethodAction(A.Action):
 		result = re.findMethodArgs(self.to_text())
 		return [el.strip() for el in re.split_arguments(result)]
 
+	def get_argument_types(self):
+		result = re.findMethodArgs(self.to_text())
+		return [el.strip() for el in re.split_argument_types(result)]
+
 
 class AddMethodOverrideChooseArgAction(MethodAction):
 	def __init__(self):
@@ -118,6 +122,8 @@ class AddMethodOverrideAction(MethodAction):
 			if line:
 				definition = line.strip()
 				break
+		log.info('definition >> ', self.expand_definition(definition))
+		definition = self.expand_definition(definition)
 		definition = definition.translate(str.maketrans({
 			"(": r"\(",
 			")": r"\)",
@@ -136,6 +142,18 @@ class AddMethodOverrideAction(MethodAction):
 			view_helper = SH.ViewHelper(self.view)
 			place_to_insert = self.view.line(self.code_region.begin()).begin() - 1
 			view_helper.insert_snippet(code_to_insert, place_to_insert)
+
+	def expand_definition(self, definition):
+		args_line = re.findMethodArgs(definition)
+		arg_types = [el.strip() for el in re.split_argument_types(args_line)]
+		log.info('arg_types >> ', arg_types)
+		arg_types = r' \w+, '.join(arg_types) + r' \w+'
+		log.info('arg_types >> ', arg_types)
+		if args_line and arg_types:
+			result = definition.replace(args_line, arg_types)
+		else:
+			result = definition
+		return result
 
 	def is_applicable(self):
 		result = super(AddMethodOverrideAction, self).is_applicable()
