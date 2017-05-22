@@ -1,65 +1,159 @@
 [
-	{ "keys": ["alt+space"], "command": "show_actions" },
+	{
+		"keys": ["alt+space"],
+		"command": "show_actions",
+		"context":[
+			{
+				"key": "selector",
+				"operator": "equal",
+				"operand": "source.apex"
+			}
+		]
+	},
 	{
 		"keys": ["ctrl+m", "g"], 
 		"command": "run_action_current_line",
-		"args": {"action_name": "AddGetter"}
+		"args": {"action_name": "AddGetter"},
+		"context":[
+			{
+				"key": "selector",
+				"operator": "equal",
+				"operand": "source.apex"
+			}
+		]
 	},
 	{
 		"keys": ["ctrl+m", "s"], 
 		"command": "run_action_current_line",
-		"args": {"action_name": "AddSetter"}
+		"args": {"action_name": "AddSetter"},
+		"context":[
+			{
+				"key": "selector",
+				"operator": "equal",
+				"operand": "source.apex"
+			}
+		]
 	},
 	{
 		"keys": ["ctrl+m", "ctrl+g"], 
 		"command": "run_action_current_line",
-		"args": {"action_name": "AddGetterSetter"}
+		"args": {"action_name": "AddGetterSetter"},
+		"context":[
+			{
+				"key": "selector",
+				"operator": "equal",
+				"operand": "source.apex"
+			}
+		]
 	},
 	{
 		"keys": ["ctrl+m", "ctrl+s"], 
 		"command": "run_action_current_line",
-		"args": {"action_name": "AddGetterSetter"}
+		"args": {"action_name": "AddGetterSetter"},
+		"context":[
+			{
+				"key": "selector",
+				"operator": "equal",
+				"operand": "source.apex"
+			}
+		]
 	},
 	{
 		"keys": ["ctrl+m", "ctrl+p"], 
 		"command": "run_action_current_line",
-		"args": {"action_name": "AddConstructorParameter"}
+		"args": {"action_name": "AddConstructorParameter"},
+		"context":[
+			{
+				"key": "selector",
+				"operator": "equal",
+				"operand": "source.apex"
+			}
+		]
 	},
 	{
 		"keys": ["ctrl+m", "alt+g"], 
 		"command": "run_action_current_line",
-		"args": {"action_name": "AddGetSetProps"}
+		"args": {"action_name": "AddGetSetProps"},
+		"context":[
+			{
+				"key": "selector",
+				"operator": "equal",
+				"operand": "source.apex"
+			}
+		]
 	},
 	{
 		"keys": ["ctrl+m", "alt+s"], 
 		"command": "run_action_current_line",
-		"args": {"action_name": "AddGetSetProps"}
+		"args": {"action_name": "AddGetSetProps"},
+		"context":[
+			{
+				"key": "selector",
+				"operator": "equal",
+				"operand": "source.apex"
+			}
+		]
 	},
 
 	{
 		"keys": ["ctrl+m", "c"], 
 		"command": "run_action_current_line",
-		"args": {"action_name": "AddConstructor"}
+		"args": {"action_name": "AddConstructor"},
+		"context":[
+			{
+				"key": "selector",
+				"operator": "equal",
+				"operand": "source.apex"
+			}
+		]
 	},
 	{
 		"keys": ["ctrl+m", "i"], 
 		"command": "run_action_current_line",
-		"args": {"action_name": "AddInitializer"}
+		"args": {"action_name": "AddInitializer"},
+		"context":[
+			{
+				"key": "selector",
+				"operator": "equal",
+				"operand": "source.apex"
+			}
+		]
 	},
 	{
 		"keys": ["ctrl+m", "ctrl+c"], 
 		"command": "run_action_current_line",
-		"args": {"action_name": "AddConstructorInitializer"}
+		"args": {"action_name": "AddConstructorInitializer"},
+		"context":[
+			{
+				"key": "selector",
+				"operator": "equal",
+				"operand": "source.apex"
+			}
+		]
 	},
 	{
 		"keys": ["ctrl+m", "ctrl+i"], 
 		"command": "run_action_current_line",
-		"args": {"action_name": "AddConstructorInitializer"}
+		"args": {"action_name": "AddConstructorInitializer"},
+		"context":[
+			{
+				"key": "selector",
+				"operator": "equal",
+				"operand": "source.apex"
+			}
+		]
 	},
 
 	{
 		"keys": ["ctrl+m", "ctrl+o"], 
 		"command": "run_action_current_line",
-		"args": {"action_name": "AddOverload"}
+		"args": {"action_name": "AddOverload"},
+		"context":[
+			{
+				"key": "selector",
+				"operator": "equal",
+				"operand": "source.apex"
+			}
+		]
 	},
 ]
