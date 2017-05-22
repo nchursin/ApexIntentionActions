@@ -1,0 +1,10 @@
+Apex Inention Actions v0.4.2
+----------------------------
+
+- Fixes issue with splitting arguments when there are some complex args like Map<T, List<T>>
+- Added settings to Sublime menu. Changed settings editing to more comfort
+- Fixed issue with actions applying to empty classes
+- Property actions allowed for the properties with { get; set; }
+- Restricted "Add { get; set; }" to properties that have no getter or setter
+
+Happy coding!
