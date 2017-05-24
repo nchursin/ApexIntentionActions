@@ -42,6 +42,8 @@ class AddConstructorAction(ClassAction):
 		template = TH.Template('other/constructor')
 		template.addVar('className', self.find_class_name())
 		template.addVar('indent', self.get_inner_indent())
+		if ' extends ' in self.to_text():
+			template.addVar('code', 'super();')
 		self.view.insert(edit, self.find_end_of_class().begin(), template.compile())
 
 	def is_applicable(self):
