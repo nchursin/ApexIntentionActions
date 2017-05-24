@@ -117,11 +117,11 @@ class AddConstructorParameterAction(PropertyAction):
 			start = constr.begin()
 			def_line = self.view.line(start)
 			def_str = self.view.substr(def_line)
-			log.debug('def_str >> ' + def_str)
-			args = re.find(r'\([\s|\n|\w]*?\)\s*\{{0,1}', def_str)
-			log.debug('args >> ' + str(args))
+			log.info('def_str >> ' + def_str)
+			args = re.findConstructorArgs(def_str)
+			log.info('args >> ' + str(args))
 			arg_def = self.get_prop_type() + ' ' + self.get_prop_name()
-			if re.contains_regex(args, r'\(\s*\w+'):
+			if args is not None:
 				arg_def = ', ' + arg_def
 			def_str = def_str.replace(')',
 				arg_def + ')')

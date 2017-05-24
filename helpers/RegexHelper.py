@@ -156,7 +156,7 @@ def findConstructor(code, class_name):
 
 
 def findConstructorWithParam(code, class_name, param_name, param_type):
-	regex = CONSTRUCTOR_DEF_START + class_name.lower() + r'\s*\((.|\n)*?' + param_type.lower() + r'\s+' + param_name.lower() + r'(.|\n)*?\)\s*\{)'
+	regex = CONSTRUCTOR_DEF_START + class_name.lower() + r'\s*\((.|\n)*?' + param_type.lower() + r'\s+' + param_name.lower() + r'(, (.|\n)*?|\s*)\)\s*\{)'
 	return find(regex, code.lower())
 
 
