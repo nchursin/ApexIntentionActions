@@ -1,0 +1,10 @@
+Apex Inention Actions v0.4.3
+----------------------------
+
+- Init generation place cursor into init() method
+- Plugin usage restricted to apex.source scope only
+- "Add overload" action check duplicates by type
+- Fixed problem with adding params that start with the same string
+- If class extends another one - generated constructor calls super()
+
+Happy coding!
