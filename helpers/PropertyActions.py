@@ -129,6 +129,9 @@ class AddConstructorParameterAction(PropertyAction):
 			def_line = self.view.line(start)
 			indent = self.get_inner_indent() + '\t'
 			insert_to = def_line.end() + 1
+			first_line = self.view.line(insert_to)
+			if re.contains_regex(self.to_text(first_line), r'super\s*\('):
+				insert_to = first_line.end() + 1
 			text = '{indent}this.{varname} = {varname};\n'.format(indent=indent, varname=self.get_prop_name())
 			self.view.insert(edit, insert_to, text)
 
