@@ -1,0 +1,11 @@
+Apex Inention Actions v0.4.5
+----------------------------
+
+We are finally in Package Control!
+So we are doing cosmetic changes.
+
+Changes:
+- Updated installation message
+- Updated README
+
+Happy coding!
