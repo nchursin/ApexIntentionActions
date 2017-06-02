@@ -11,9 +11,9 @@ Thank you for installing Apex Intention Actions! I hope this will make your life
 
 This plugin was inspired by IntelliJ Idea's intention actions (aka bulb actions).
 
-Default hotkey to display actions is Alt+Space regardless of the system you are on.
+Default hotkey to display actions is `Alt+Space` regardless of the system you are on.
 
-Default action panel style is Sublime quick panel. To change it use Preferences command for Apex Intention Actions.
+Default action panel style is Sublime pop-up menu. To change it use Preferences command for Apex Intention Actions.
 
 To change default keyboard shortcuts use Key preferences command for Apex Intention Actions.
 
