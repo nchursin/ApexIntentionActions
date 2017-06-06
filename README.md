@@ -46,6 +46,7 @@ Just start typing something. If there is a snippet - autocomplete will show it t
 8. Add method overload
 
 All actions have short cut. `Ctrl+M` (`⌘+M` on Mac), then use following shortcuts:
+
 1. `G` - Add getter
 2. `S` - Add setter
 3. `Ctrl+G(⌘+G)` or `Ctrl+S(⌘+S)` - Add both getter and setter
