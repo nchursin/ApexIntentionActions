@@ -11,20 +11,13 @@ Snippets and commands to speed up you Salesfroce development
 Since MavensMate requires ST 3, there will be no ST 2 support.
 
 ## Installation
-### From repository via Package Control
+If you have previously installed the plugin manually or through repo - please remove it!
 
-This requires [Package Control](https://packagecontrol.io/installation) to be installed.
-
-0. Remove the package if you have installed it manually previously.
-1. Use `Package Control: Add Repository` command. Paste this repository URL.
-2. Use `Package Control: Install Package`.
-3. Search for `ApexIntentionActions`. Hit `Enter` when you find it.
-
-### Manual
-
-1. Download [a release](https://github.com/nchursin/ApexIntentionActions/releases "Releases page"). Rename it to `Apex Intention Actions.sublime-package`
-2. Copy the Sublime package file to your Sublime Text Packages folder. To find it use `Package Control -> List Packages` on any of the installed package.
-3. Restart Sublime if needed.
+1. [Install Package Control](https://packagecontrol.io/installation) if you don't have it already
+2. Run `Package Control: Install Package` command
+	- [Running commands from Sublime Text](http://docs.sublimetext.info/en/latest/extensibility/command_palette.html)
+3. Search for `Apex Intention Actions`
+4. Hit `Enter`
 
 ## How to use it
 
