@@ -1,4 +1,4 @@
-Apex Inention Actions v0.4.5
+Apex Inention Actions v1.0.0
 ----------------------------
 
 We are finally in Package Control!
