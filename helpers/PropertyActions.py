@@ -102,9 +102,14 @@ class AddConstructorParameterAction(PropertyAction):
 	def __init__(self):
 		super(AddConstructorParameterAction, self).__init__(A.ADD_CONSTRUCTOR_PARAMETER)
 
-	def generate_code(self, edit):
-		constr_regions = self.find_constructors()
+	def run(self, edit, args):
+		if 'constr' in args:
+			self.generate_code(edit, args['constr'])
+		else:
+			self.choose_constructor(edit)
 
+	def choose_constructor(self, edit):
+		constr_regions = self.find_constructors()
 		if not constr_regions:
 			constructorAction = CA.AddConstructorAction()
 			constructorAction.setView(self.view)
@@ -112,28 +117,38 @@ class AddConstructorParameterAction(PropertyAction):
 			constructorAction.generate_code(edit)
 			constr_regions = self.find_constructors()
 
-		log.debug('constr_regions size >> ' + str(len(constr_regions)))
-		for constr in constr_regions:
-			start = constr.begin()
-			def_line = self.view.line(start)
-			def_str = self.view.substr(def_line)
-			log.info('def_str >> ' + def_str)
-			args = re.findConstructorArgs(def_str)
-			log.info('args >> ' + str(args))
-			arg_def = self.get_prop_type() + ' ' + self.get_prop_name()
-			if args is not None:
-				arg_def = ', ' + arg_def
-			def_str = def_str.replace(')',
-				arg_def + ')')
-			self.view.replace(edit, def_line, def_str)
-			def_line = self.view.line(start)
-			indent = self.get_inner_indent() + '\t'
-			insert_to = def_line.end() + 1
-			first_line = self.view.line(insert_to)
-			if re.contains_regex(self.to_text(first_line), r'super\s*\('):
-				insert_to = first_line.end() + 1
-			text = '{indent}this.{varname} = {varname};\n'.format(indent=indent, varname=self.get_prop_name())
-			self.view.insert(edit, insert_to, text)
+		if 1 == len(constr_regions):
+			self.generate_code(edit, constr_regions[0])
+		else:
+			constrs = []
+			for constr_region in constr_regions:
+				constrs.append(self.to_text(self.view.line(constr_region.begin())).strip())
+			self.vh.open_menu(list(constrs), self.handle_constr_choice)
+
+	def handle_constr_choice(self, index):
+		pass
+
+	def generate_code(self, edit, constr):
+		start = constr.begin()
+		def_line = self.view.line(start)
+		def_str = self.view.substr(def_line)
+		log.info('def_str >> ' + def_str)
+		args = re.findConstructorArgs(def_str)
+		log.info('args >> ' + str(args))
+		arg_def = self.get_prop_type() + ' ' + self.get_prop_name()
+		if args is not None:
+			arg_def = ', ' + arg_def
+		def_str = def_str.replace(')',
+			arg_def + ')')
+		self.view.replace(edit, def_line, def_str)
+		def_line = self.view.line(start)
+		indent = self.get_inner_indent() + '\t'
+		insert_to = def_line.end() + 1
+		first_line = self.view.line(insert_to)
+		if re.contains_regex(self.to_text(first_line), r'super\s*\('):
+			insert_to = first_line.end() + 1
+		text = '{indent}this.{varname} = {varname};\n'.format(indent=indent, varname=self.get_prop_name())
+		self.view.insert(edit, insert_to, text)
 
 	def is_applicable(self):
 		result = re.is_prop_def(self.to_text(), allow_get_set=True, allow_static=False)

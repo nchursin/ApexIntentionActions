@@ -1,5 +1,6 @@
 from . import logger
 from . import RegexHelper as re
+from .SublimeHelper import ViewHelper as VH
 import sublime
 
 
@@ -38,6 +39,7 @@ class Action():
 
 	def setView(self, view):
 		self.view = view
+		self.vh = VH(self.view)
 
 	def setCode(self, code):
 		self.code_region = code
