@@ -3,7 +3,6 @@ import sublime
 
 class ViewHelper():
 	def __init__(self, view):
-		super(ViewHelper, self).__init__()
 		self.view = view
 
 	def insert_snippet(self, snippet, coords):
@@ -20,6 +19,15 @@ class ViewHelper():
 		self.view.sel().clear()
 		self.view.sel().add(region)
 		self.view.run_command("insert_snippet", {"contents": snippet})
+
+	def open_menu(self, *kwargs):
+		settings = sublime.load_settings('SmartApexPrefs.sublime-settings')
+		intention_menu_mode = settings.get("intention_menu_mode")
+		if "quickpanel" == intention_menu_mode.lower():
+			show_menu = self.view.window().show_quick_panel
+		elif "popup" == intention_menu_mode.lower():
+			show_menu = self.view.show_popup_menu
+		return show_menu(*kwargs)
 
 
 def get_setting(setting_name, settings_file='SmartApexPrefs.sublime-settings'):

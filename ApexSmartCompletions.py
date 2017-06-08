@@ -19,6 +19,7 @@ reloader.reload()
 
 from .helpers import logger
 from .helpers import ActionStore as AS
+from .helpers.SublimeHelper import ViewHelper as VH
 
 
 log = logger.get(__name__)
@@ -33,7 +34,7 @@ class ShowActionsCommand(sublime_plugin.TextCommand):
 		return self.is_enabled(edit)
 
 	def run(self, edit):
-		self.set_menu()
+		self.ViewHelper = VH(self.view)
 
 		self.edit = edit
 		region = self.view.sel()[0]
@@ -42,7 +43,7 @@ class ShowActionsCommand(sublime_plugin.TextCommand):
 		self.actions = list(items)
 		names = self.getActionNames(self.actions)
 		if names:
-			self.show_menu(list(names), self.fire_action)
+			self.ViewHelper.open_menu(list(names), self.fire_action)
 		else:
 			log.info('No quick actions found')
 
@@ -66,14 +67,6 @@ class ShowActionsCommand(sublime_plugin.TextCommand):
 				real_actions.append(i)
 		self.actions = real_actions
 		return names
-
-	def set_menu(self):
-		settings = sublime.load_settings('SmartApexPrefs.sublime-settings')
-		self.intention_menu_mode = settings.get("intention_menu_mode")
-		if "quickpanel" == self.intention_menu_mode.lower():
-			self.show_menu = self.view.window().show_quick_panel
-		elif "popup" == self.intention_menu_mode.lower():
-			self.show_menu = self.view.show_popup_menu
 
 
 class RunActionCommand(sublime_plugin.TextCommand):
