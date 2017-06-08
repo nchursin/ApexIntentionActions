@@ -103,8 +103,8 @@ class AddConstructorParameterAction(PropertyAction):
 		super(AddConstructorParameterAction, self).__init__(A.ADD_CONSTRUCTOR_PARAMETER)
 
 	def run(self, edit, args):
-		if 'constr' in args:
-			self.generate_code(edit, args['constr'])
+		if 'constr_start' in args:
+			self.generate_code(edit, args['constr_start'])
 		else:
 			self.choose_constructor(edit)
 
@@ -126,10 +126,19 @@ class AddConstructorParameterAction(PropertyAction):
 			self.vh.open_menu(list(constrs), self.handle_constr_choice)
 
 	def handle_constr_choice(self, index):
-		pass
+		if -1 == index:
+			return
+		constr_regions = self.find_constructors()
+		args = {
+			'action_name': self.name,
+			'subl_line_start': self.code_region.begin(),
+			'subl_line_end': self.code_region.end(),
+			'constr_start': constr_regions[index].begin()
+		}
+		self.view.run_command('run_action', args)
 
-	def generate_code(self, edit, constr):
-		start = constr.begin()
+	def generate_code(self, edit, constr_start):
+		start = constr_start
 		def_line = self.view.line(start)
 		def_str = self.view.substr(def_line)
 		log.info('def_str >> ' + def_str)
