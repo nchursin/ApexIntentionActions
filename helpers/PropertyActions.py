@@ -37,7 +37,7 @@ class PropertyAction(A.Action):
 		raise Exception("generate_code not defined")
 
 	def is_applicable(self):
-		return re.is_prop_def(self.to_text())
+		return re.is_prop_def(self.to_text(), True)
 
 
 class AddGetterAction(PropertyAction):
@@ -53,7 +53,7 @@ class AddGetterAction(PropertyAction):
 		self.view.insert(edit, self.find_end_of_class().begin(), template.compile())
 
 	def is_applicable(self):
-		result = super(AddGetterAction, self).is_applicable()
+		result = re.is_prop_def(self.to_text())
 		return result and re.findGetter(self.to_text(self.get_class_code()), self.get_prop_name()) is None
 
 
@@ -70,7 +70,7 @@ class AddSetterAction(PropertyAction):
 		self.view.insert(edit, self.find_end_of_class().begin(), template.compile())
 
 	def is_applicable(self):
-		result = super(AddSetterAction, self).is_applicable()
+		result = re.is_prop_def(self.to_text())
 		return result and re.findSetter(self.to_text(self.get_class_code()), self.get_prop_name()) is None
 
 

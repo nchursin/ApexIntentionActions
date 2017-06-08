@@ -11,7 +11,7 @@ TYPE = r'([' + ALL_IN_ONE + r']+)'
 
 PROP_DEF = r'(public|private|global|protected)\s*(static){0,1}\s+' + TYPE + r'\s+(\w+)\s*;'
 PROP_DEF_GET_SET = r'(public|private|global|protected)\s*(static){0,1}\s+' + TYPE + r'\s+(\w+)\s*\{\s*(get(;|\{(.|\n)*?\}))\s*(set(;|\{(.|\n)*?\}))\s*\}'
-PROP_DEF_GET_SET_OPTIONAL = r'((public|private|global|protected)\s*(static){0,1}\s+' + TYPE + r'\s+(\w+)\s*(;|\{\s*(get(;|\{(.|\n)*?\}))\s*(set(;|\{(.|\n)*?\}))\s*\}))'
+PROP_DEF_GET_SET_OPTIONAL = r'((public|private|global|protected)\s*(static){0,1}\s+' + TYPE + r'\s+(\w+)\s*(;|\{\s*(\w*\s*get(;|\{(.|\n)*?\}))\s*(\w*\s*set(;|\{(.|\n)*?\}))\s*\}))'
 SECURE_PROP_DEF = r'(private|protected)\s*(static){0,1}\s+' + TYPE + r'\s+(\w+)\s*;'
 SECURE_PROP_DEF_GET_SET = r'(private|protected)\s*(static){0,1}\s+' + TYPE + r'\s+(\w+)\s*\{\s*(get(;|(\{(.|\n)*?\}))\s*set(;|(\{(.|\n)*?\})))\}'
 # PROP_NAME = r'((public|private|global|protected)\s*(static){0,1}\s+' + TYPE + r'\s+(\w+)\s*;)'
@@ -184,13 +184,10 @@ def is_constructor_def(line):
 
 
 def is_prop_def(line, allow_get_set=False, allow_static=True):
-	regex = PROP_DEF
+	regex = PROP_DEF_GET_SET_OPTIONAL if allow_get_set else PROP_DEF
 	if not allow_static:
 		regex = regex.replace(r'\s*(static){0,1}', '')
 	result = match_stripped(regex, line)
-	if allow_get_set:
-		regex = PROP_DEF_GET_SET
-		result = result or match_stripped(regex, line)
 	return result
 
 
