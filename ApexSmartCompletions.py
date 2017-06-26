@@ -39,6 +39,11 @@ class ShowActionsCommand(sublime_plugin.TextCommand):
 		self.edit = edit
 		region = self.view.sel()[0]
 		self.subl_line = self.view.line(region)
+		line_text = self.view.substr(self.subl_line)
+		while ';' not in line_text and '{' not in line_text:
+			next_line_region = self.view.line(self.subl_line.end() + 1)
+			self.subl_line = sublime.Region(self.subl_line.begin(), next_line_region.end())
+			line_text = self.view.substr(self.subl_line)
 		items = AS.getActions(self.view, self.subl_line)
 		self.actions = list(items)
 		names = self.getActionNames(self.actions)
