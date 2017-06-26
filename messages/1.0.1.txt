@@ -1,8 +1,8 @@
 Apex Inention Actions v1.0.1
 ----------------------------
 
-- "Add Overload" action works even if argument are splitted by new line or if '{' is on the next line
-- Property action work for proerties with {public get; public set;} definition
-- "Add constructor parameter" allows to choose constructor to add parameter to
+- "Add Overload" action works even if arguments are split by newline or if '{' is on the next line
+- Property action work for properties with {public get; public set;} definition
+- "Add constructor parameter" allows choosing constructor to add parameter to
 
 Happy coding!
