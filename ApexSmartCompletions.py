@@ -4,6 +4,12 @@ import sublime_plugin
 import sublime
 import os.path
 
+# 
+# Demo piece of code
+# Something more here
+# And even here
+# Well, that's enough
+# 
 
 # Make sure all dependencies are reloaded on upgrade
 pack_name = os.path.dirname(os.path.realpath(__file__))
