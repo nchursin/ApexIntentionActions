@@ -4,6 +4,11 @@ import sublime_plugin
 import sublime
 import os.path
 
+# 
+# Another deom piece of code
+# This will cause conflicts
+# Don't worry, they are resolvable
+# 
 
 # Make sure all dependencies are reloaded on upgrade
 pack_name = os.path.dirname(os.path.realpath(__file__))
