@@ -1,4 +1,8 @@
 # Apex Intention Actions
+
+### No longer maintained
+I'm not using Sublime any more. I'm working on porting this [plugin to VSCode](https://github.com/nchursin/apex-lightbulbs).
+
 #### A Sublime Text 3 plugin to speed up your Salesforce coding.
 
 ## Description
